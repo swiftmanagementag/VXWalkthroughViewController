@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Walkthrough View Controller-->
+        <scene sceneID="nwe-sD-twD">
+            <objects>
+                <viewController storyboardIdentifier="Walkthrough" id="v0K-G3-I2A" customClass="VXWalkthroughViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lxb-ut-eNC"/>
+                        <viewControllerLayoutGuide type="bottom" id="idG-Ys-Fyy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ohc-V3-qP5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="d6E-Za-1Wa">
+                                <rect key="frame" x="141" y="516" width="39" height="37"/>
+                            </pageControl>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nP-yL-LNV" userLabel="Prev">
+                                <rect key="frame" x="0.0" y="510" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="IZq-ld-zWJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="lzb-v7-ehy"/>
+                                </constraints>
+                                <state key="normal" image="VXWalkthroughViewControllerLeftArrow.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="prevPage" destination="v0K-G3-I2A" eventType="touchUpInside" id="NIM-sv-2vT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ua-vK-hjL" userLabel="Next">
+                                <rect key="frame" x="270" y="510" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Aru-u2-dlX"/>
+                                    <constraint firstAttribute="height" constant="50" id="omZ-hw-Cmq"/>
+                                </constraints>
+                                <state key="normal" image="VXWalkthroughViewControllerRightArrow.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextPage" destination="v0K-G3-I2A" eventType="touchUpInside" id="RKG-y5-y5B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JxM-rx-Nqb">
+                                <rect key="frame" x="260" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="HBf-PA-gFH"/>
+                                    <constraint firstAttribute="width" constant="44" id="TaE-4l-25d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="63"/>
+                                <state key="normal" title="x">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="v0K-G3-I2A" eventType="touchUpInside" id="bgV-iK-6xl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53333333329999999" green="0.79215686269999996" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1nP-yL-LNV" firstAttribute="leading" secondItem="ohc-V3-qP5" secondAttribute="leadingMargin" constant="-16" id="24h-pe-2Eh"/>
+                            <constraint firstItem="JxM-rx-Nqb" firstAttribute="trailing" secondItem="ohc-V3-qP5" secondAttribute="trailingMargin" id="2Q3-mT-jbb"/>
+                            <constraint firstItem="idG-Ys-Fyy" firstAttribute="top" secondItem="1nP-yL-LNV" secondAttribute="bottom" constant="8" id="7cG-5d-CiO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Ua-vK-hjL" secondAttribute="trailing" constant="-16" id="9RV-4R-Tpy"/>
+                            <constraint firstItem="1nP-yL-LNV" firstAttribute="centerY" secondItem="d6E-Za-1Wa" secondAttribute="centerY" constant="0.5" id="Hdo-tc-8ne"/>
+                            <constraint firstItem="idG-Ys-Fyy" firstAttribute="top" secondItem="5Ua-vK-hjL" secondAttribute="bottom" constant="8" id="V0y-JX-NXr"/>
+                            <constraint firstItem="JxM-rx-Nqb" firstAttribute="top" secondItem="lxb-ut-eNC" secondAttribute="bottom" id="eZm-eo-4Jo"/>
+                            <constraint firstAttribute="centerX" secondItem="d6E-Za-1Wa" secondAttribute="centerX" constant="-0.5" id="s4L-y7-qMi"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="closeButton" destination="JxM-rx-Nqb" id="Rhq-mg-aI1"/>
+                        <outlet property="nextButton" destination="5Ua-vK-hjL" id="bzn-Pw-F1b"/>
+                        <outlet property="pageControl" destination="d6E-Za-1Wa" id="AOM-D0-2Jd"/>
+                        <outlet property="prevButton" destination="1nP-yL-LNV" id="WJ8-rw-6Zd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kuh-OJ-Ud1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="291" y="398"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="kCK-FE-SZG">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughPage" id="YEU-xZ-koU" customClass="VXWalkthroughPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bIw-lM-TIY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nl4-Pn-5D4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E7c-iN-OTE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_checklist.png" translatesAutoresizingMaskIntoConstraints="NO" id="bYs-93-hFW">
+                                <rect key="frame" x="16" y="40" width="288" height="288"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bYs-93-hFW" secondAttribute="height" multiplier="1:1" id="YmA-ds-yU5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Things to do" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKG-4Y-YBN">
+                                <rect key="frame" x="16" y="344" width="288" height="216"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53333333329999999" green="0.79215686269999996" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bYs-93-hFW" firstAttribute="top" secondItem="E7c-iN-OTE" secondAttribute="topMargin" constant="40" id="Gb6-y8-8M3"/>
+                            <constraint firstItem="VKG-4Y-YBN" firstAttribute="top" secondItem="bYs-93-hFW" secondAttribute="bottom" constant="16" id="Sf6-JI-NAG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bYs-93-hFW" secondAttribute="trailing" id="XJX-Re-9TN"/>
+                            <constraint firstItem="VKG-4Y-YBN" firstAttribute="trailing" secondItem="E7c-iN-OTE" secondAttribute="trailingMargin" id="aKH-Z6-RGq"/>
+                            <constraint firstItem="Nl4-Pn-5D4" firstAttribute="top" secondItem="VKG-4Y-YBN" secondAttribute="bottom" constant="8" id="bf4-b4-Rzg"/>
+                            <constraint firstItem="bYs-93-hFW" firstAttribute="leading" secondItem="E7c-iN-OTE" secondAttribute="leadingMargin" id="leI-2G-ZgH"/>
+                            <constraint firstItem="VKG-4Y-YBN" firstAttribute="leading" secondItem="E7c-iN-OTE" secondAttribute="leadingMargin" id="sdZ-47-g17"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="bYs-93-hFW" id="N7X-o2-aYE"/>
+                        <outlet property="titleView" destination="VKG-4Y-YBN" id="Zfz-84-PNB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qFJ-J5-OMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="680" y="398"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="VXWalkthroughViewControllerLeftArrow.png" width="50" height="50"/>
+        <image name="VXWalkthroughViewControllerRightArrow.png" width="50" height="50"/>
+        <image name="icon_checklist.png" width="640" height="640"/>
+    </resources>
+</document>
