@@ -55,16 +55,16 @@
 
 #if defined(VX_NO_SLASH)
 	NSDictionary *textAttributes = @{NSFontAttributeName  : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
-	
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:titleText attributes:textAttributes];
 #else
-	NSDictionary *style = @{
-							@"$default" : @{NSFontAttributeName  : [UIFont fontWithName:kFont size:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]},
-							@"b"		: @{NSFontAttributeName  : [UIFont fontWithName:kFontBold size:fontSize]},
-							@"em"		: @{NSFontAttributeName  : [UIFont fontWithName:kFont size:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}
+	if(!self.styles) {
+		self.styles = @{
+							@"$default" : @{NSFontAttributeName  : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]},
+							@"b"		: @{NSFontAttributeName  : [UIFont boldSystemFontOfSize:fontSize]},
+							@"em"		: @{NSFontAttributeName  : [UIFont boldSystemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}
 							};
-	
-	NSAttributedString *attributedString = [SLSMarkupParser attributedStringWithMarkup:_titleText style:style error:NULL];
+	}
+	NSAttributedString *attributedString = [SLSMarkupParser attributedStringWithMarkup:_titleText style:self.styles error:NULL];
 #endif
 	
 	self.titleView.attributedText = attributedString;

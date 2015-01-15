@@ -78,6 +78,9 @@
 }
 
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor {
+	return [VXWalkthroughViewController initWithDelegate:pDelegate withBackgroundColor:pBackgroundColor withStyles:nil];
+}
++(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles{
 	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
 	VXWalkthroughViewController* walkthrough = [stb instantiateViewControllerWithIdentifier:@"Walkthrough"];
 
@@ -93,6 +96,7 @@
 
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
 		VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:@"WalkthroughPage"];
+		vc.styles = pStyles;
 		vc.view.backgroundColor = pBackgroundColor;
 		vc.titleText = stepText;
 		vc.imageName = [NSString stringWithFormat:@"walkthrough_%li.png", (long)step];
