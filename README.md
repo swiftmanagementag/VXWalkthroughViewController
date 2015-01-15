@@ -29,6 +29,16 @@ If you want to use VXWalkthroughViewController with CocoaPods
 
 (see sample Xcode project in `/Demo`)
 
+Add some steps to your `Localizable.strings` file, so it can be found using NSLocalizedString.
+You can add as many steps as you like, but start at 0 and make them without steps.
+If you want images, add them to your project with the predetermined names of `walkthrough_0.png`, `walkthrough_1.png`, etc.
+
+```objective-c
+"walkthrough_0" = "See No Evil";
+"walkthrough_1" = "Hear No Evil";
+"walkthrough_2" = "Speak No Evil";
+```
+
 Check if you should display the walkthrough in `viewDidload`:
 
 ```objective-c

@@ -32,6 +32,8 @@
     // Do any additional setup after loading the view.
 
 	self.view.layer.masksToBounds = true;
+	self.imageView.hidden = YES;
+	self.titleView.hidden = YES;
 
 	self.subsWeights = [NSMutableArray array];
 	
@@ -46,6 +48,7 @@
 	}
 }
 -(void)setTitleText:(NSString *)titleText {
+	self.titleView.hidden = NO;
 	_titleText = titleText;
 	
 	double fontSize = 24.0;
@@ -67,6 +70,7 @@
 	self.titleView.attributedText = attributedString;
 }
 -(void)setImageName:(NSString *)imageName {
+	self.imageView.hidden = NO;
 	self.imageView.image = [UIImage imageNamed:imageName];
 }
 -(void)viewDidLayoutSubviews {
