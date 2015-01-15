@@ -4,7 +4,7 @@ VXWalkthroughViewController is a simple way to add an intro to your app.
 Show your users the main features of your app, step by step. 
 Your onboarding tutorial can include text, images and even simple html.
 
-![VXWalkthroughViewController](https://raw.githubusercontent.com/swiftmanagementag/VXWalkthroughViewController/master/screenshot.png)
+![VXWalkthroughViewController](https://cloud.githubusercontent.com/assets/314516/5762993/a2ec59da-9ce6-11e4-9c93-690b48eb93b5.png)
 
 **VXWalkthroughViewController features:**
 
