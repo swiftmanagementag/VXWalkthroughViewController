@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.resources 		= 'VXWalkthroughViewController/**/*.{bundle,xib,png,lproj}'
   s.requires_arc 	= true
   s.framework		= 'QuartzCore'
-  s.dependency		= 'Slash'
+  s.dependency    'Slash', '~> 0.1'
 end
