@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source       	= { :git => 'https://github.com/swiftmanagementag/VXWalkthroughViewController.git', :tag => s.version.to_s }
   s.platform     	= :ios, '7.0'
   s.source_files 	= 'VXWalkthroughViewController/**/*.{h,m}'
-  s.resources 		= 'VXWalkthroughViewController/**/*.{bundle,xib,png,lproj}'
+  s.resources 		= 'VXWalkthroughViewController/**/*.{bundle,xib,png,lproj,storyboard}'
   s.requires_arc 	= true
   s.framework		= 'QuartzCore'
   s.dependency    'Slash', '~> 0.1'

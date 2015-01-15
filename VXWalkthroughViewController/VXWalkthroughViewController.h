@@ -51,5 +51,6 @@
 -(void)addViewController:(UIViewController*)vc;
 +(BOOL)walkthroughShown;
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor;
++(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles;
 
 @end
