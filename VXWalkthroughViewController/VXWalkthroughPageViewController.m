@@ -69,7 +69,8 @@
 
 #if defined(VX_NO_SLASH)
 	NSDictionary *textAttributes = @{NSFontAttributeName  : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
-	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleText attributes:textAttributes] ;
+	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:titleText attributes:textAttributes] ;
+
 #else
 	if(!self.styles) {
 		self.styles = @{
@@ -78,15 +79,17 @@
 							@"em"		: @{NSFontAttributeName  : [UIFont boldSystemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}
 							};
 	}
-	NSMutableAttributedString *attributedString = [[SLSMarkupParser attributedStringWithMarkup:_titleText style:self.styles error:NULL] mutablecopy];
+	NSAttributedString *attributedString = [SLSMarkupParser attributedStringWithMarkup:_titleText style:self.styles error:NULL] ;
 #endif
 	
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init] ;
 	[paragraphStyle setAlignment:NSTextAlignmentCenter];
 	
-	[attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributedString length])];
+	NSMutableAttributedString *alignedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+
+	[alignedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [alignedString length])];
 	
-	self.titleView.attributedText = attributedString;
+	self.titleView.attributedText = alignedString;
 }
 -(void)setImageName:(NSString *)imageName {
 	self.imageView.hidden = NO;
