@@ -100,7 +100,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_checklist.png" translatesAutoresizingMaskIntoConstraints="NO" id="bYs-93-hFW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walkthrough_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="bYs-93-hFW">
                                 <rect key="frame" x="16" y="40" width="288" height="288"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bYs-93-hFW" secondAttribute="height" multiplier="1:1" id="YmA-ds-yU5"/>
@@ -138,6 +138,6 @@
     <resources>
         <image name="VXWalkthroughViewControllerLeftArrow.png" width="50" height="50"/>
         <image name="VXWalkthroughViewControllerRightArrow.png" width="50" height="50"/>
-        <image name="icon_checklist.png" width="640" height="640"/>
+        <image name="walkthrough_0.png" width="205" height="205"/>
     </resources>
 </document>

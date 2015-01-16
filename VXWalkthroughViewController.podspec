@@ -1,4 +1,4 @@
-@version = "1.0.7"
+@version = "1.0.8"
 
 Pod::Spec.new do |s|
   s.name         	= 'VXWalkthroughViewController'

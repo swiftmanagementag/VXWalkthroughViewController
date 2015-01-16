@@ -69,7 +69,7 @@
 
 #if defined(VX_NO_SLASH)
 	NSDictionary *textAttributes = @{NSFontAttributeName  : [UIFont systemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
-	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:titleText attributes:textAttributes];
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleText attributes:textAttributes] ;
 #else
 	if(!self.styles) {
 		self.styles = @{
@@ -78,8 +78,13 @@
 							@"em"		: @{NSFontAttributeName  : [UIFont boldSystemFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}
 							};
 	}
-	NSAttributedString *attributedString = [SLSMarkupParser attributedStringWithMarkup:_titleText style:self.styles error:NULL];
+	NSMutableAttributedString *attributedString = [[SLSMarkupParser attributedStringWithMarkup:_titleText style:self.styles error:NULL] mutablecopy];
 #endif
+	
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init] ;
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	
+	[attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributedString length])];
 	
 	self.titleView.attributedText = attributedString;
 }
