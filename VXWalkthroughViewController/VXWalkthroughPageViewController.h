@@ -29,6 +29,8 @@ enum VXWalkthroughAnimationType{
 @property (nonatomic) NSString *imageName;
 
 @property (nonatomic) NSDictionary *styles;
+@property (nonatomic)  BOOL *roundImages;
+
 
 @property (nonatomic,weak) IBOutlet UIImageView *imageView;
 @property (nonatomic,weak) IBOutlet UILabel *titleView;

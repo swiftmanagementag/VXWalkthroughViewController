@@ -23,10 +23,24 @@
 		self.speed = CGPointMake(0.0f, 0.0f);            // Note if you set this value via Attribute inspector it can only be an Integer (change it manually via User defined runtime attribute if you need a Float)
 		self.speedVariance= CGPointMake(0.0f, 0.0f);     // Note if you set this value via Attribute inspector it can only be an Integer (change it manually via User defined runtime attribute if you need a Float)
 		self.animationType = Linear;
-		self.animateAlpha = false;
+		self.animateAlpha = true;
+		self.roundImages = true;
 	}
 	return self;
 }
+-(instancetype)initWithCoder:(NSCoder *)aDecoder {
+	if(self = [super initWithCoder:aDecoder]) {
+		// Edit these values using the Attribute inspector or modify directly the "User defined runtime attributes" in IB
+		self.speed = CGPointMake(0.0f, 0.0f);            // Note if you set this value via Attribute inspector it can only be an Integer (change it manually via User defined runtime attribute if you need a Float)
+		self.speedVariance= CGPointMake(0.0f, 0.00f);     // Note if you set this value via Attribute inspector it can only be an Integer (change it manually via User defined runtime attribute if you need a Float)
+		self.animationType = Zoom;
+		self.animateAlpha = false;
+		self.roundImages = true;
+	};
+	
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -76,7 +90,10 @@
 -(void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
 	
-	[self roundImageView:self.imageView];
+	if(self.roundImages){
+		[self roundImageView:self.imageView];
+	}
+
 }
 -(void)roundImageView:(UIImageView*)pImageView  {
 	pImageView.layer.borderWidth = 3.0;

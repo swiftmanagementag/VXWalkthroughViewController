@@ -22,6 +22,7 @@
 	if(self = [super init]) {
 		self.scrollview = [[UIScrollView alloc] init];
 		self.controllers = [NSMutableArray array];
+		self.roundImages = true;
 	};
 	
 	return self;
@@ -36,6 +37,7 @@
 		
 		// Controllers as empty array
 		self.controllers = [NSMutableArray array];
+		self.roundImages = true;
 		
 	};
 	
@@ -85,9 +87,17 @@
 	VXWalkthroughViewController* walkthrough = [stb instantiateViewControllerWithIdentifier:@"Walkthrough"];
 
 	walkthrough.view.backgroundColor = pBackgroundColor;
+	walkthrough.backgroundColor = pBackgroundColor;
 	walkthrough.delegate = pDelegate;
-
-
+	walkthrough.styles = pStyles;
+	
+	[walkthrough load];
+	
+	return walkthrough;
+}
+-(void)load {
+	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+	
 	// setup pages
 	NSInteger step = 0;
 	NSString *stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
@@ -96,11 +106,13 @@
 
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
 		VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:@"WalkthroughPage"];
-		vc.styles = pStyles;
-		vc.view.backgroundColor = pBackgroundColor;
+		vc.styles = self.styles;
+		vc.roundImages = true;
+
+		vc.view.backgroundColor = self.backgroundColor;
 		vc.titleText = stepText;
 		vc.imageName = [NSString stringWithFormat:@"walkthrough_%li.png", (long)step];
-		[walkthrough addViewController:vc];
+		[self addViewController:vc];
 		
 		step++;
 		
@@ -108,7 +120,6 @@
 		stepText = NSLocalizedString(stepKey, @"");
 		
 	}
-	return walkthrough;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -46,6 +46,10 @@
 @property (nonatomic) IBOutlet UIButton *prevButton;
 @property (nonatomic) IBOutlet UIButton *closeButton;
 
+@property (nonatomic) BOOL roundImages;
+@property (nonatomic) NSDictionary *styles;
+@property (nonatomic) UIColor *backgroundColor;
+
 @property (nonatomic, readonly) NSInteger currentPage;
 
 -(void)addViewController:(UIViewController*)vc;
