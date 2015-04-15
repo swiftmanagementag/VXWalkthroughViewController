@@ -31,7 +31,7 @@ enum VXWalkthroughAnimationType{
 @property (nonatomic) NSDictionary *styles;
 @property (nonatomic) BOOL roundImages;
 @property (nonatomic) BOOL bigImages;
-
+@property (nonatomic) UIViewContentMode imageContentMode;
 
 @property (nonatomic,weak) IBOutlet UIImageView *imageView;
 @property (nonatomic,weak) IBOutlet NSLayoutConstraint *imageViewAspectContstraint;

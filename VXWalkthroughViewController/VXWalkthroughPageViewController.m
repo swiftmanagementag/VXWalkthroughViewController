@@ -112,6 +112,11 @@
     }
 }
 
+-(void)setImageContentMode:(UIViewContentMode)imageContentMode {
+    _imageContentMode = imageContentMode;
+    self.imageView.contentMode = imageContentMode;
+}
+
 -(void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
 	

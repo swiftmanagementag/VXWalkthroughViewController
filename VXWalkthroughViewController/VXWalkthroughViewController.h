@@ -48,6 +48,7 @@
 
 @property (nonatomic) BOOL roundImages;
 @property (nonatomic) BOOL bigImages;
+@property (nonatomic) UIViewContentMode imageContentMode;
 @property (nonatomic) NSDictionary *styles;
 @property (nonatomic) UIColor *backgroundColor;
 

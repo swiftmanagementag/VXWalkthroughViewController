@@ -24,6 +24,7 @@
 		self.controllers = [NSMutableArray array];
         self.roundImages = true;
         self.bigImages = true;
+        self.imageContentMode = UIViewContentModeScaleToFill;
 	};
 	
 	return self;
@@ -40,7 +41,7 @@
 		self.controllers = [NSMutableArray array];
 		self.roundImages = true;
         self.bigImages = true;
-
+        self.imageContentMode = UIViewContentModeScaleToFill;
 	};
 	
 	return self;
@@ -111,6 +112,7 @@
 		vc.styles = self.styles;
         vc.roundImages = self.roundImages;
         vc.bigImages = self.bigImages;
+        vc.imageContentMode = self.imageContentMode;
 
 		vc.view.backgroundColor = self.backgroundColor;
 		vc.titleText = stepText;
@@ -288,6 +290,14 @@
         controller.bigImages = bigImages;
     }
 }
+
+- (void)setImageContentMode:(UIViewContentMode)imageContentMode {
+    _imageContentMode = imageContentMode;
+    for (VXWalkthroughPageViewController *controller in self.controllers) {
+        controller.imageContentMode = imageContentMode;
+    }
+}
+
 /*
 override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
 	println("CHANGE")
