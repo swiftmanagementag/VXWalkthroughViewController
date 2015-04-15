@@ -22,7 +22,9 @@
 	if(self = [super init]) {
 		self.scrollview = [[UIScrollView alloc] init];
 		self.controllers = [NSMutableArray array];
-		self.roundImages = true;
+        self.roundImages = true;
+        self.bigImages = true;
+        self.imageContentMode = UIViewContentModeScaleToFill;
 	};
 	
 	return self;
@@ -38,7 +40,8 @@
 		// Controllers as empty array
 		self.controllers = [NSMutableArray array];
 		self.roundImages = true;
-		
+        self.bigImages = true;
+        self.imageContentMode = UIViewContentModeScaleToFill;
 	};
 	
 	return self;
@@ -107,7 +110,9 @@
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
 		VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:@"WalkthroughPage"];
 		vc.styles = self.styles;
-		vc.roundImages = true;
+        vc.roundImages = self.roundImages;
+        vc.bigImages = self.bigImages;
+        vc.imageContentMode = self.imageContentMode;
 
 		vc.view.backgroundColor = self.backgroundColor;
 		vc.titleText = stepText;
@@ -270,6 +275,27 @@
 
 -(void) scrollViewDidEndScrollingAnimation:(UIScrollView*)scrollView {
 	[self updateUI];
+}
+
+- (void)setRoundImages:(BOOL)roundImages {
+    _roundImages = roundImages;
+    for (VXWalkthroughPageViewController *controller in self.controllers) {
+        controller.roundImages = roundImages;
+    }
+}
+
+- (void)setBigImages:(BOOL)bigImages {
+    _bigImages = bigImages;
+    for (VXWalkthroughPageViewController *controller in self.controllers) {
+        controller.bigImages = bigImages;
+    }
+}
+
+- (void)setImageContentMode:(UIViewContentMode)imageContentMode {
+    _imageContentMode = imageContentMode;
+    for (VXWalkthroughPageViewController *controller in self.controllers) {
+        controller.imageContentMode = imageContentMode;
+    }
 }
 
 /*
