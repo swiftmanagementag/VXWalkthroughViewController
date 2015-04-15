@@ -47,6 +47,7 @@
 @property (nonatomic) IBOutlet UIButton *closeButton;
 
 @property (nonatomic) BOOL roundImages;
+@property (nonatomic) BOOL bigImages;
 @property (nonatomic) NSDictionary *styles;
 @property (nonatomic) UIColor *backgroundColor;
 

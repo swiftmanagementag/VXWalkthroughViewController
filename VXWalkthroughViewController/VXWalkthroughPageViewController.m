@@ -95,6 +95,23 @@
 	self.imageView.hidden = NO;
 	self.imageView.image = [UIImage imageNamed:imageName];
 }
+
+-(void)setBigImages:(BOOL)bigImages {
+    _bigImages = bigImages;
+    if (bigImages) {
+        [self.imageView removeConstraint:self.imageViewAspectContstraint];
+    } else {
+        self.imageViewAspectContstraint = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                                       attribute:NSLayoutAttributeHeight
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.imageView
+                                                                       attribute:NSLayoutAttributeWidth
+                                                                      multiplier:1.0f
+                                                                        constant:0.0f];
+        [self.imageView addConstraint:self.imageViewAspectContstraint];
+    }
+}
+
 -(void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
 	

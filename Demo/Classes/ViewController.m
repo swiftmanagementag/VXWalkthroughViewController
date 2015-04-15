@@ -36,6 +36,8 @@
 	// create the walkthough controller
 	VXWalkthroughViewController* walkthrough = [VXWalkthroughViewController initWithDelegate:self withBackgroundColor:backgroundColor];
 	
+//    walkthrough.roundImages = YES;        // disable/enable roundness
+//    walkthrough.bigImages = YES;          // NO for square image, YES for almost full screen
 	// show it
 	[self presentViewController:walkthrough animated:YES completion:nil];
 }
