@@ -1,0 +1,9 @@
+Steps for release
+
+1. Make all changes
+2. Test
+3. Update @version in podspec, e.g. @version = "1.0.10"
+4. Commit to git with the note "Release 1.0.10"
+5. Add tag to commit "1.0.10"
+6. push
+7. pod trunk push VXWalkthroughViewController.podspec --allow-warnings

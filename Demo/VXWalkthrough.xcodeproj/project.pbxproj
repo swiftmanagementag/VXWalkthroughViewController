@@ -17,6 +17,7 @@
 		0A5661441A6826F10069B195 /* walkthrough_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A5661411A6826F10069B195 /* walkthrough_2.png */; };
 		0A56615D1A682A470069B195 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A56615C1A682A470069B195 /* QuartzCore.framework */; };
 		0A56615F1A6908CB0069B195 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A56615E1A6908CB0069B195 /* Images.xcassets */; };
+		0AFAE2B31ADF95990016B912 /* info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFAE2B21ADF95990016B912 /* info.txt */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -43,6 +44,7 @@
 		0A56615C1A682A470069B195 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0A56615E1A6908CB0069B195 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VXWalkthrough/Images.xcassets; sourceTree = "<group>"; };
 		0AA8BC9D1A441E6B0031E730 /* VXWalkthroughViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = VXWalkthroughViewController.podspec; path = ../VXWalkthroughViewController.podspec; sourceTree = "<group>"; };
+		0AFAE2B21ADF95990016B912 /* info.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = info.txt; path = ../info.txt; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0AFAE2B21ADF95990016B912 /* info.txt */,
 				0AA8BC9D1A441E6B0031E730 /* VXWalkthroughViewController.podspec */,
 				22AAF0BE1831F5B300AB15C4 /* README.md */,
 				0A56613B1A68267C0069B195 /* Localizable.strings */,
@@ -253,6 +256,7 @@
 				0A56613A1A6825850069B195 /* VXWalkthroughViewController.storyboard in Resources */,
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				0A5661441A6826F10069B195 /* walkthrough_2.png in Resources */,
+				0AFAE2B31ADF95990016B912 /* info.txt in Resources */,
 				28F335F11007B36200424DE2 /* ViewController.xib in Resources */,
 				22473B9C133800DD00F497E6 /* MainWindow-iPad.xib in Resources */,
 				0A56613C1A68267C0069B195 /* Localizable.strings in Resources */,
