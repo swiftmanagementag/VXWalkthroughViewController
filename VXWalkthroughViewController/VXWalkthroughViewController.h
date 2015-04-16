@@ -46,6 +46,7 @@
 @property (nonatomic) IBOutlet UIButton *prevButton;
 @property (nonatomic) IBOutlet UIButton *closeButton;
 
+@property (nonatomic) NSString *pageStoryboardID;
 @property (nonatomic) BOOL roundImages;
 @property (nonatomic) NSDictionary *styles;
 @property (nonatomic) UIColor *backgroundColor;

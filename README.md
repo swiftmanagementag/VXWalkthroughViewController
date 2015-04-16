@@ -70,6 +70,16 @@ This is the simplest way using the convenience method `VXWalkthroughModalViewCon
 }
 ```
 
+## Release notes
+
+### 1.0.10
+Implemented suggestion of Jay Lyerly to add the option of using fullscreen images
+
+```objective-c
+	walkthrough.roundImages = NO;
+	walkthrough.pageStoryboardID = @"WalkthroughPageFull";
+```
+
 ## Credits
 
 VXWalkthroughViewController is based on Yari D'areglia [BWWalkthrough](https://github.com/ariok/BWWalkthrough) and Sam Vermettes [SVWebViewController](https://github.com/samvermette/SVWebViewController).

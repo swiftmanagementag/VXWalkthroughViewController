@@ -101,8 +101,8 @@
 	if(self.roundImages){
 		[self roundImageView:self.imageView];
 	}
-
 }
+
 -(void)roundImageView:(UIImageView*)pImageView  {
 	pImageView.layer.borderWidth = 3.0;
 	pImageView.layer.borderColor = [UIColor whiteColor].CGColor;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -133,6 +133,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFJ-J5-OMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="680" y="398"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="1eg-E4-FY3">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughPageFull" id="PGb-Hi-9st" customClass="VXWalkthroughPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Or7-nS-4Pb"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gu3-7h-gx2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iat-aI-2IH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walkthrough_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="8AZ-TZ-uZc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8AZ-TZ-uZc" secondAttribute="height" multiplier="1:1" id="tZo-Ni-NgU"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tZo-Ni-NgU"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Things to do" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncU-9J-E7i">
+                                <rect key="frame" x="16" y="344" width="288" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ncU-9J-E7i" secondAttribute="height" multiplier="4:3" id="hSS-MH-6Xr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53333333329999999" green="0.79215686269999996" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ncU-9J-E7i" firstAttribute="trailing" secondItem="iat-aI-2IH" secondAttribute="trailingMargin" id="G1z-Iz-BlD"/>
+                            <constraint firstItem="ncU-9J-E7i" firstAttribute="top" secondItem="8AZ-TZ-uZc" secondAttribute="bottom" constant="16" id="O1k-Hi-YE0"/>
+                            <constraint firstItem="Gu3-7h-gx2" firstAttribute="top" secondItem="8AZ-TZ-uZc" secondAttribute="bottom" id="PzA-Sh-70R"/>
+                            <constraint firstItem="8AZ-TZ-uZc" firstAttribute="top" secondItem="iat-aI-2IH" secondAttribute="topMargin" id="Smg-1B-sqs"/>
+                            <constraint firstItem="Gu3-7h-gx2" firstAttribute="top" secondItem="ncU-9J-E7i" secondAttribute="bottom" constant="8" id="dSx-w9-xsI"/>
+                            <constraint firstItem="8AZ-TZ-uZc" firstAttribute="leading" secondItem="iat-aI-2IH" secondAttribute="leadingMargin" constant="-16" id="ieb-sg-C6Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8AZ-TZ-uZc" secondAttribute="trailing" constant="-16" id="koE-VK-iwA"/>
+                            <constraint firstItem="ncU-9J-E7i" firstAttribute="leading" secondItem="iat-aI-2IH" secondAttribute="leadingMargin" id="nWI-Y6-zDt"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="O1k-Hi-YE0"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="8AZ-TZ-uZc" id="cWp-7k-kma"/>
+                        <outlet property="titleView" destination="ncU-9J-E7i" id="iFj-la-O07"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uq8-43-cb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="398"/>
         </scene>
     </scenes>
     <resources>

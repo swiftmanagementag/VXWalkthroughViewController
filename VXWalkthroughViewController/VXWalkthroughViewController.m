@@ -18,15 +18,19 @@
 @end
 
 @implementation VXWalkthroughViewController
+
 -(instancetype)init{
 	if(self = [super init]) {
 		self.scrollview = [[UIScrollView alloc] init];
 		self.controllers = [NSMutableArray array];
 		self.roundImages = true;
+		self.pageStoryboardID = @"WalkthroughPage";
+
 	};
 	
 	return self;
 }
+
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
 	if(self = [super initWithCoder:aDecoder]) {
 		// Setup the scrollview
@@ -38,6 +42,7 @@
 		// Controllers as empty array
 		self.controllers = [NSMutableArray array];
 		self.roundImages = true;
+		self.pageStoryboardID = @"WalkthroughPage";
 		
 	};
 	
@@ -45,7 +50,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+	// load walkthrough
+	[self load];
+	
+	// Do any additional setup after loading the view.
 	self.scrollview.delegate = self;
 	self.scrollview.translatesAutoresizingMaskIntoConstraints = false;
 	
@@ -61,7 +70,6 @@
 																	  metrics:nil
 																		views:@{@"scrollview":self.scrollview}]];
 
-	// @["scrollview":self.scrollview]
 }
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -70,9 +78,8 @@
 	
 	[[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"vxwalkthroughshown"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
-
-	
 }
+
 +(BOOL)walkthroughShown {
 	NSString *walkthroughShown = [[NSUserDefaults standardUserDefaults] stringForKey:@"vxwalkthroughshown"];
 	
@@ -86,12 +93,11 @@
 	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
 	VXWalkthroughViewController* walkthrough = [stb instantiateViewControllerWithIdentifier:@"Walkthrough"];
 
-	walkthrough.view.backgroundColor = pBackgroundColor;
 	walkthrough.backgroundColor = pBackgroundColor;
 	walkthrough.delegate = pDelegate;
 	walkthrough.styles = pStyles;
-	
-	[walkthrough load];
+	walkthrough.roundImages = YES;
+	walkthrough.pageStoryboardID = @"WalkthroughPage";
 	
 	return walkthrough;
 }
@@ -105,9 +111,9 @@
 	NSString* stepText = NSLocalizedString(stepKey, @"");
 
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
-		VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:@"WalkthroughPage"];
+		VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:self.pageStoryboardID];
 		vc.styles = self.styles;
-		vc.roundImages = true;
+		vc.roundImages = self.roundImages;
 
 		vc.view.backgroundColor = self.backgroundColor;
 		vc.titleText = stepText;
@@ -120,6 +126,7 @@
 		stepText = NSLocalizedString(stepKey, @"");
 		
 	}
+	self.view.backgroundColor = self.backgroundColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -272,13 +279,4 @@
 	[self updateUI];
 }
 
-/*
-override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-	println("CHANGE")
-}
-
-override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-	println("SIZE")
-}
-*/
 @end

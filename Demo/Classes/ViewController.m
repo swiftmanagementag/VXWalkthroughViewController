@@ -36,6 +36,13 @@
 	// create the walkthough controller
 	VXWalkthroughViewController* walkthrough = [VXWalkthroughViewController initWithDelegate:self withBackgroundColor:backgroundColor];
 	
+	// this is the default
+		//	walkthrough.roundImages = YES;
+
+	// this uses full screen images
+		//	walkthrough.roundImages = NO;
+		//	walkthrough.pageStoryboardID = @"WalkthroughPageFull";
+	
 	// show it
 	[self presentViewController:walkthrough animated:YES completion:nil];
 }
