@@ -7,3 +7,5 @@ Steps for release
 5. Add tag to commit "1.0.10"
 6. push
 7. pod trunk push VXWalkthroughViewController.podspec --allow-warnings
+
+pod trunk register lancashire@swift.ch 'Graham Lancashire' --description='macbook pro'
