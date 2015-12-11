@@ -101,9 +101,23 @@
 	
 	return walkthrough;
 }
--(void)load {
+-(VXWalkthroughPageViewController*)createPageViewControllerWithTitle:(NSString*)pTitle  andImageName:(NSString*)pImageName {
 	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
 	
+	VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:self.pageStoryboardID];
+	vc.styles = self.styles;
+	vc.roundImages = self.roundImages;
+	
+	vc.view.backgroundColor = self.backgroundColor;
+	vc.titleText = pTitle;
+	
+	vc.imageName = pImageName;
+
+	return vc;
+}
+-(void)populate {
+	self.items = [[NSMutableDictionary alloc] init];
+		
 	// setup pages
 	NSInteger step = 0;
 	NSString *stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
@@ -111,28 +125,45 @@
 	NSString* stepText = NSLocalizedString(stepKey, @"");
 
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
-		VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:self.pageStoryboardID];
-		vc.styles = self.styles;
-		vc.roundImages = self.roundImages;
-
-		vc.view.backgroundColor = self.backgroundColor;
-		vc.titleText = stepText;
-		vc.imageName = [NSString stringWithFormat:@"walkthrough_%li.png", (long)step];
-		[self addViewController:vc];
+		NSDictionary* item = @{@"key": stepKey, @"title": stepText, @"image": stepKey, @"sort": [NSNumber numberWithInt:step]};
+		[self.items setObject:item forKey:stepKey];
 		
 		step++;
 		
 		stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
 		stepText = NSLocalizedString(stepKey, @"");
-		
 	}
+}
+-(void)load {
+	if(self.items == nil || self.items.count == 0) {
+		[self populate];
+	}
+	
+	if(self.controllers == nil || self.controllers.count == 0){
+		NSArray *keys = [self.items keysSortedByValueUsingComparator: ^(id obj1, id obj2) {
+			if ([obj1[@"sort"] integerValue] > [obj2[@"sort"] integerValue]) {
+		
+				return (NSComparisonResult)NSOrderedDescending;
+	}
+			if ([obj1[@"sort"] integerValue] < [obj2[@"sort"] integerValue]) {
+				
+				return (NSComparisonResult)NSOrderedAscending;
+			}
+			
+			return (NSComparisonResult)NSOrderedSame;
+		}];
+		
+		for(NSString *key in keys) {
+			NSDictionary* dct = self.items[key];
+			VXWalkthroughPageViewController* vc = [self createPageViewControllerWithTitle:dct[@"title"] andImageName:dct[@"image" ]];
+			[self addViewController:vc];
+			
+		}
+	}
+	
 	self.view.backgroundColor = self.backgroundColor;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
  // The index of the current page (readonly)
 - (NSInteger)currentPage{

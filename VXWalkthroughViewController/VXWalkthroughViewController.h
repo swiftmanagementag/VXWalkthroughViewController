@@ -49,11 +49,13 @@
 @property (nonatomic) NSString *pageStoryboardID;
 @property (nonatomic) BOOL roundImages;
 @property (nonatomic) NSDictionary *styles;
+@property (nonatomic) NSMutableDictionary *items;
 @property (nonatomic) UIColor *backgroundColor;
 
 @property (nonatomic, readonly) NSInteger currentPage;
 
 -(void)addViewController:(UIViewController*)vc;
+-(void)populate;
 +(BOOL)walkthroughShown;
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor;
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles;

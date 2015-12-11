@@ -72,6 +72,27 @@ This is the simplest way using the convenience method `VXWalkthroughModalViewCon
 
 ## Release notes
 
+### 1.0.11
+Implemented the option of controlling and dynamically modifying the population of tutorial screens.
+The example shows the initiated automatic population and the modification of an image (better suited).
+
+```objective-c
+	[walkthrough populate];
+	
+	NSString *key = @"walkthrough_1";
+	NSMutableDictionary* item = [[walkthrough.items valueForKey:key] mutableCopy];
+	
+	if(item) {
+		NSString* imageName = [[self.categories firstObject] imageName];
+		if(imageName) {
+			[item setValue:imageName forKey:@"image"];
+			[walkthrough.items setObject:item forKey:key];
+		}
+	}
+
+
+```
+
 ### 1.0.10
 Implemented suggestion of Jay Lyerly to add the option of using fullscreen images
 
