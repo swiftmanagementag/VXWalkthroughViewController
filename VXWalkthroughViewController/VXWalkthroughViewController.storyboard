@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -103,11 +102,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walkthrough_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="bYs-93-hFW">
                                 <rect key="frame" x="16" y="40" width="288" height="288"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="bYs-93-hFW" secondAttribute="height" multiplier="1:1" id="LUc-lW-ovS"/>
                                     <constraint firstAttribute="width" secondItem="bYs-93-hFW" secondAttribute="height" multiplier="1:1" id="YmA-ds-yU5"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Things to do" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKG-4Y-YBN">
                                 <rect key="frame" x="16" y="344" width="288" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="CKZ-k9-DRI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -117,10 +120,11 @@
                         <constraints>
                             <constraint firstItem="bYs-93-hFW" firstAttribute="top" secondItem="E7c-iN-OTE" secondAttribute="topMargin" constant="40" id="Gb6-y8-8M3"/>
                             <constraint firstItem="VKG-4Y-YBN" firstAttribute="top" secondItem="bYs-93-hFW" secondAttribute="bottom" constant="16" id="Sf6-JI-NAG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bYs-93-hFW" secondAttribute="trailing" id="XJX-Re-9TN"/>
+                            <constraint firstItem="bYs-93-hFW" firstAttribute="centerX" secondItem="E7c-iN-OTE" secondAttribute="centerX" id="Uya-mL-WB4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bYs-93-hFW" secondAttribute="trailing" priority="800" id="XJX-Re-9TN"/>
                             <constraint firstItem="VKG-4Y-YBN" firstAttribute="trailing" secondItem="E7c-iN-OTE" secondAttribute="trailingMargin" id="aKH-Z6-RGq"/>
                             <constraint firstItem="Nl4-Pn-5D4" firstAttribute="top" secondItem="VKG-4Y-YBN" secondAttribute="bottom" constant="8" id="bf4-b4-Rzg"/>
-                            <constraint firstItem="bYs-93-hFW" firstAttribute="leading" secondItem="E7c-iN-OTE" secondAttribute="leadingMargin" id="leI-2G-ZgH"/>
+                            <constraint firstItem="bYs-93-hFW" firstAttribute="leading" secondItem="E7c-iN-OTE" secondAttribute="leadingMargin" priority="800" id="leI-2G-ZgH"/>
                             <constraint firstItem="VKG-4Y-YBN" firstAttribute="leading" secondItem="E7c-iN-OTE" secondAttribute="leadingMargin" id="sdZ-47-g17"/>
                         </constraints>
                     </view>
@@ -198,6 +202,6 @@
     <resources>
         <image name="VXWalkthroughViewControllerLeftArrow.png" width="50" height="50"/>
         <image name="VXWalkthroughViewControllerRightArrow.png" width="50" height="50"/>
-        <image name="walkthrough_0.png" width="205" height="205"/>
+        <image name="walkthrough_0.png" width="600" height="600"/>
     </resources>
 </document>

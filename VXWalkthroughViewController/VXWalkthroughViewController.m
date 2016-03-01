@@ -309,5 +309,7 @@
 -(void) scrollViewDidEndScrollingAnimation:(UIScrollView*)scrollView {
 	[self updateUI];
 }
-
+-(BOOL)shouldAutorotate {
+    return NO;
+}
 @end
