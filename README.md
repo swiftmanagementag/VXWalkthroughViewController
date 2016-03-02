@@ -72,6 +72,11 @@ This is the simplest way using the convenience method `VXWalkthroughModalViewCon
 
 ## Release notes
 
+### 1.0.12
+Better handling of startup in different orientations
+Locking of rotations once started to prevent display issues
+Recompiled and fixed warnings under XCode 7.2.1
+
 ### 1.0.11
 Implemented the option of controlling and dynamically modifying the population of tutorial screens.
 The example shows the initiated automatic population and the modification of an image (better suited).

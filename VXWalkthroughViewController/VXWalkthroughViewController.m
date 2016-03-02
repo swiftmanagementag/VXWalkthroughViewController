@@ -125,7 +125,7 @@
 	NSString* stepText = NSLocalizedString(stepKey, @"");
 
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
-		NSDictionary* item = @{@"key": stepKey, @"title": stepText, @"image": stepKey, @"sort": [NSNumber numberWithInt:step]};
+		NSDictionary* item = @{@"key": stepKey, @"title": stepText, @"image": stepKey, @"sort": [NSNumber numberWithInteger:step]};
 		[self.items setObject:item forKey:stepKey];
 		
 		step++;
