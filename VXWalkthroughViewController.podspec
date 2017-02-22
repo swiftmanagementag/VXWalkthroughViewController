@@ -1,4 +1,4 @@
-@version = "1.0.12"
+@version = "1.0.13"
 
 Pod::Spec.new do |s|
   s.name         	= 'VXWalkthroughViewController'
@@ -11,6 +11,9 @@ Pod::Spec.new do |s|
   s.platform     	= :ios, '7.0'
   s.source_files 	= 'VXWalkthroughViewController/**/*.{h,m}'
   s.resources 		= 'VXWalkthroughViewController/**/*.{bundle,xib,png,lproj,storyboard}'
+  s.resource_bundles = {
+    'VXWalkthroughViewController' => ['VXWalkthroughViewController/**/*.{bundle,xib,png,lproj,storyboard}']
+  }
   s.requires_arc 	= true
   s.framework		= 'QuartzCore'
   s.dependency    'Slash', '~> 0.1'
