@@ -90,7 +90,13 @@
 	return [VXWalkthroughViewController initWithDelegate:pDelegate withBackgroundColor:pBackgroundColor withStyles:nil];
 }
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles{
-	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+	NSBundle* bundle = [NSBundle bundleForClass:self.classForCoder];
+	
+	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:bundle];
+	if(!stb) {
+		stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+	}
+	
 	VXWalkthroughViewController* walkthrough = [stb instantiateViewControllerWithIdentifier:@"Walkthrough"];
 
 	walkthrough.backgroundColor = pBackgroundColor;
@@ -98,11 +104,15 @@
 	walkthrough.styles = pStyles;
 	walkthrough.roundImages = YES;
 	walkthrough.pageStoryboardID = @"WalkthroughPage";
-	
 	return walkthrough;
 }
 -(VXWalkthroughPageViewController*)createPageViewControllerWithTitle:(NSString*)pTitle  andImageName:(NSString*)pImageName {
-	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+	NSBundle* bundle = [NSBundle bundleForClass:self.classForCoder];
+	
+	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:bundle];
+	if(!stb) {
+		stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+	}
 	
 	VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:self.pageStoryboardID];
 	vc.styles = self.styles;
@@ -112,7 +122,6 @@
 	vc.titleText = pTitle;
 	
 	vc.imageName = pImageName;
-
 	return vc;
 }
 -(void)populate {
@@ -156,7 +165,9 @@
 		for(NSString *key in keys) {
 			NSDictionary* dct = self.items[key];
 			VXWalkthroughPageViewController* vc = [self createPageViewControllerWithTitle:dct[@"title"] andImageName:dct[@"image" ]];
+			if (vc) {
 			[self addViewController:vc];
+			}
 			
 		}
 	}
