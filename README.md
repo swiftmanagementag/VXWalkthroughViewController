@@ -72,6 +72,9 @@ This is the simplest way using the convenience method `VXWalkthroughModalViewCon
 
 ## Release notes
 
+### 1.0.15
+Fix for IOS 11
+
 ### 1.0.12
 Better handling of startup in different orientations
 Locking of rotations once started to prevent display issues
