@@ -16,7 +16,7 @@
 
 @end
 
-@implementation VXWalkthroughPageViewController 
+@implementation VXWalkthroughPageViewController
 - (instancetype)init {
 	if(self =  [super init]) {
 		// Edit these values using the Attribute inspector or modify directly the "User defined runtime attributes" in IB
@@ -40,6 +40,10 @@
 	
 	return self;
 }
++ (NSString *)storyboardID {
+	return @"WalkthroughPage";
+}
+	
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,6 +95,12 @@
 	
 	self.titleView.attributedText = alignedString;
 }
+-(void)setItem:(NSDictionary *)pItem {
+	self.titleText = pItem[VX_TITLE];
+	
+	self.imageName = pItem[VX_IMAGE];
+}
+	
 -(void)setImageName:(NSString *)imageName {
 	self.imageView.hidden = NO;
 	self.imageView.image = [UIImage imageNamed:imageName];

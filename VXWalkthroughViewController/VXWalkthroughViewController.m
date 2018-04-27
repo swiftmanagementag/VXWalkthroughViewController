@@ -19,13 +19,19 @@
 
 @implementation VXWalkthroughViewController
 
++ (NSString *)storyboardName {
+	return @"VXWalkthroughViewController";
+}
+
++ (NSString *)storyboardID {
+	return @"Walkthrough";
+}
+
 -(instancetype)init{
 	if(self = [super init]) {
 		self.scrollview = [[UIScrollView alloc] init];
 		self.controllers = [NSMutableArray array];
 		self.roundImages = true;
-		self.pageStoryboardID = @"WalkthroughPage";
-
 	};
 	
 	return self;
@@ -42,7 +48,7 @@
 		// Controllers as empty array
 		self.controllers = [NSMutableArray array];
 		self.roundImages = true;
-		self.pageStoryboardID = @"WalkthroughPage";
+		
 		
 	};
 	
@@ -73,15 +79,26 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
 	self.pageControl.numberOfPages = self.controllers.count;
 	self.pageControl.currentPage = 0;
 	
-	[[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"vxwalkthroughshown"];
+	NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
+	NSString *startInfoKey = [NSString stringWithFormat:@"vxwalkthroughshown_%@", appVersion];
+	
+	NSString *walkthroughShown = [[NSUserDefaults standardUserDefaults] stringForKey:startInfoKey];
+
+	[[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:startInfoKey];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(BOOL)walkthroughShown {
-	NSString *walkthroughShown = [[NSUserDefaults standardUserDefaults] stringForKey:@"vxwalkthroughshown"];
+	
+	// check if the startup info has been shown for the current release
+	NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
+	NSString *startInfoKey = [NSString stringWithFormat:@"vxwalkthroughshown_%@", appVersion];
+	
+	NSString *walkthroughShown = [[NSUserDefaults standardUserDefaults] stringForKey:startInfoKey];
 	
 	return [walkthroughShown isEqualToString:@"YES"];
 }
@@ -92,38 +109,41 @@
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles{
 	NSBundle* bundle = [NSBundle bundleForClass:self.classForCoder];
 	
-	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:bundle];
+	UIStoryboard *stb = [UIStoryboard storyboardWithName:VXWalkthroughViewController.storyboardName bundle:bundle];
 	if(!stb) {
-		stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+		stb = [UIStoryboard storyboardWithName:VXWalkthroughViewController.storyboardName bundle:nil];
 	}
 	
-	VXWalkthroughViewController* walkthrough = [stb instantiateViewControllerWithIdentifier:@"Walkthrough"];
+	VXWalkthroughViewController* walkthrough = [stb instantiateViewControllerWithIdentifier: VXWalkthroughViewController.storyboardID];
 
 	walkthrough.backgroundColor = pBackgroundColor;
 	walkthrough.delegate = pDelegate;
 	walkthrough.styles = pStyles;
 	walkthrough.roundImages = YES;
-	walkthrough.pageStoryboardID = @"WalkthroughPage";
 	return walkthrough;
 }
--(VXWalkthroughPageViewController*)createPageViewControllerWithTitle:(NSString*)pTitle  andImageName:(NSString*)pImageName {
+-(VXWalkthroughPageViewController*)createPageViewControllerWithItem:(NSDictionary*)pItem {
 	NSBundle* bundle = [NSBundle bundleForClass:self.classForCoder];
 	
-	UIStoryboard *stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:bundle];
+	UIStoryboard *stb = [UIStoryboard storyboardWithName:VXWalkthroughViewController.storyboardName bundle:bundle];
 	if(!stb) {
-		stb = [UIStoryboard storyboardWithName:@"VXWalkthroughViewController" bundle:nil];
+		stb = [UIStoryboard storyboardWithName:VXWalkthroughViewController.storyboardName bundle:nil];
 	}
 	
-	VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:self.pageStoryboardID];
+	NSString *storyboardID = pItem[@"storyboardID"] ?: VXWalkthroughPageViewController.storyboardID;
+	VXWalkthroughPageViewController* vc = [stb instantiateViewControllerWithIdentifier:storyboardID];
+	
 	vc.styles = self.styles;
 	vc.roundImages = self.roundImages;
 	
 	vc.view.backgroundColor = self.backgroundColor;
-	vc.titleText = pTitle;
 	
-	vc.imageName = pImageName;
+	vc.item = pItem;
+	
 	return vc;
 }
+
+	
 -(void)populate {
 	self.items = [[NSMutableDictionary alloc] init];
 		
@@ -134,7 +154,7 @@
 	NSString* stepText = NSLocalizedString(stepKey, @"");
 
 	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
-		NSDictionary* item = @{@"key": stepKey, @"title": stepText, @"image": stepKey, @"sort": [NSNumber numberWithInteger:step]};
+		NSDictionary* item = @{VX_KEY: stepKey, VX_TITLE: stepText, VX_IMAGE: stepKey, VX_SORT: [NSNumber numberWithInteger:step * 10]};
 		[self.items setObject:item forKey:stepKey];
 		
 		step++;
@@ -150,11 +170,11 @@
 	
 	if(self.controllers == nil || self.controllers.count == 0){
 		NSArray *keys = [self.items keysSortedByValueUsingComparator: ^(id obj1, id obj2) {
-			if ([obj1[@"sort"] integerValue] > [obj2[@"sort"] integerValue]) {
+			if ([obj1[VX_SORT] integerValue] > [obj2[VX_SORT] integerValue]) {
 		
 				return (NSComparisonResult)NSOrderedDescending;
 	}
-			if ([obj1[@"sort"] integerValue] < [obj2[@"sort"] integerValue]) {
+			if ([obj1[VX_SORT] integerValue] < [obj2[VX_SORT] integerValue]) {
 				
 				return (NSComparisonResult)NSOrderedAscending;
 			}
@@ -163,10 +183,12 @@
 		}];
 		
 		for(NSString *key in keys) {
-			NSDictionary* dct = self.items[key];
-			VXWalkthroughPageViewController* vc = [self createPageViewControllerWithTitle:dct[@"title"] andImageName:dct[@"image" ]];
+			NSDictionary* item = self.items[key];
+			
+			VXWalkthroughPageViewController* vc = [self createPageViewControllerWithItem:item];
 			if (vc) {
-			[self addViewController:vc];
+				
+				[self addViewController:vc];
 			}
 			
 		}

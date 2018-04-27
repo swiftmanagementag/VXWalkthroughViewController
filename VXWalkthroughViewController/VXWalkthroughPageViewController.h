@@ -28,6 +28,8 @@ enum VXWalkthroughAnimationType{
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *imageName;
 
+@property (nonatomic) NSDictionary *item;
+
 @property (nonatomic) NSDictionary *styles;
 @property (nonatomic)  BOOL roundImages;
 
@@ -35,4 +37,8 @@ enum VXWalkthroughAnimationType{
 @property (nonatomic,weak) IBOutlet UIImageView *imageView;
 @property (nonatomic,weak) IBOutlet UILabel *titleView;
 
+	
++ (NSString *)storyboardID;
+
+	
 @end

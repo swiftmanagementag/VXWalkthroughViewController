@@ -14,7 +14,6 @@
 -(void)walkthroughNextButtonPressed;               //
 -(void)walkthroughPrevButtonPressed;               //
 -(void)walkthroughPageDidChange:(NSInteger)pageNumber;     // Called when current page changes
-
 @end
 
 // Walkthrough Page:
@@ -30,6 +29,14 @@
 -(void)walkthroughDidScroll:(CGFloat)position withOffset:(CGFloat)offset;   // Called when the main Scrollview...scroll
 @end
 
+#define VX_TITLE @"title"
+#define VX_IMAGE @"image"
+#define VX_STORYBOARDID @"storyboardID"
+#define VX_LOGINPROMPT @"loginPrompt"
+#define VX_PASSWORDPROMPT @"passwordPrompt"
+#define VX_BUTTONTITLE @"buttonTitle"
+#define VX_KEY @"key"
+#define VX_SORT @"sort"
 
 @interface VXWalkthroughViewController : UIViewController <UIScrollViewDelegate>
 
