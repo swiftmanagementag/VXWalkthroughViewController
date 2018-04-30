@@ -10,13 +10,13 @@
 #import "VXWalkthroughPageViewController.h"
 
 
-@interface VXWalkthroughPageLoginViewController : VXWalkthroughPageViewController
+@interface VXWalkthroughPageSignupViewController : VXWalkthroughPageViewController
 
-@property (nonatomic,weak) IBOutlet UITextField *loginField;
-@property (nonatomic,weak) IBOutlet UITextField *passwordField;
+@property (nonatomic,weak) IBOutlet UITextField *emailField;
 
-@property (nonatomic,weak) IBOutlet UILabel *loginLabel;
-@property (nonatomic,weak) IBOutlet UILabel *passwordLabel;
+@property (nonatomic,weak) IBOutlet UILabel *emailLabel;
+
+@property (nonatomic,weak) IBOutlet UILabel *messageLabel;
 	
 @property (nonatomic,weak) IBOutlet UIButton *actionButton;
 

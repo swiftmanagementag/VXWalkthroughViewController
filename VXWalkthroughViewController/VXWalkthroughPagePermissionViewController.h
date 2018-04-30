@@ -13,7 +13,6 @@
 @interface VXWalkthroughPagePermissionViewController : VXWalkthroughPageViewController
 
 	@property (nonatomic,weak) IBOutlet UIButton *actionButton;
-	@property (nonatomic,weak) IBOutlet UILabel *messageLabel;
 
 - (IBAction)actionClicked:(id)sender;
 

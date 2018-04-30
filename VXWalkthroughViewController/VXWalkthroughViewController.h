@@ -14,6 +14,7 @@
 -(void)walkthroughNextButtonPressed;               //
 -(void)walkthroughPrevButtonPressed;               //
 -(void)walkthroughPageDidChange:(NSInteger)pageNumber;     // Called when current page changes
+-(void)walkthroughActionButtonPressed:(id)pSender withOptions:(NSDictionary*)pOptions;
 @end
 
 // Walkthrough Page:
@@ -32,9 +33,20 @@
 #define VX_TITLE @"title"
 #define VX_IMAGE @"image"
 #define VX_STORYBOARDID @"storyboardID"
+
+#define VX_PICKERVALUE @"pickerValue"
+#define VX_LOGINVALUE @"loginValue"
+#define VX_EMAILVALUE @"emailValue"
+#define VX_PASSWORDVALUE @"passwordValue"
+
+#define VX_EMAILPROMPT @"emailPrompt"
 #define VX_LOGINPROMPT @"loginPrompt"
 #define VX_PASSWORDPROMPT @"passwordPrompt"
 #define VX_BUTTONTITLE @"buttonTitle"
+#define VX_PLACEHOLDERVALUE @"placeholderValue"
+#define VX_SUCCESS @"success"
+#define VX_ERROR @"error"
+
 #define VX_KEY @"key"
 #define VX_SORT @"sort"
 
@@ -53,7 +65,6 @@
 @property (nonatomic) IBOutlet UIButton *prevButton;
 @property (nonatomic) IBOutlet UIButton *closeButton;
 
-@property (nonatomic) NSString *pageStoryboardID;
 @property (nonatomic) BOOL roundImages;
 @property (nonatomic) NSDictionary *styles;
 @property (nonatomic) NSMutableDictionary *items;

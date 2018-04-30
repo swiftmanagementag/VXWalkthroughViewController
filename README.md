@@ -106,7 +106,6 @@ Implemented suggestion of Jay Lyerly to add the option of using fullscreen image
 
 ```objective-c
 	walkthrough.roundImages = NO;
-	walkthrough.pageStoryboardID = @"WalkthroughPageFull";
 ```
 
 ## Credits

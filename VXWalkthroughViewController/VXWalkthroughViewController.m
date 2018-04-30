@@ -93,7 +93,6 @@
 }
 
 +(BOOL)walkthroughShown {
-	
 	// check if the startup info has been shown for the current release
 	NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
 	NSString *startInfoKey = [NSString stringWithFormat:@"vxwalkthroughshown_%@", appVersion];
@@ -135,7 +134,7 @@
 	
 	vc.styles = self.styles;
 	vc.roundImages = self.roundImages;
-	
+	vc.parent = self;
 	vc.view.backgroundColor = self.backgroundColor;
 	
 	vc.item = pItem;

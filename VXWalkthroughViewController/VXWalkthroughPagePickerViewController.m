@@ -31,7 +31,10 @@
 }
 	
 - (IBAction)actionClicked:(id)sender {
-	
+	if([self.parent.delegate respondsToSelector:@selector(walkthroughActionButtonPressed:)]) {
+		//NSDictionary* options = @{@"selected": self.loginField.text};
+		//[((VXWalkthroughViewController*)self.parentViewController).delegate walkthroughActionButtonPressed:self withOptions:options];
+	}
 }
 - (IBAction)nextClicked:(id)sender {
 	
