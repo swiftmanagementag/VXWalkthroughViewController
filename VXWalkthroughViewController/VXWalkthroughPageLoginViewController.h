@@ -10,7 +10,7 @@
 #import "VXWalkthroughPageViewController.h"
 
 
-@interface VXWalkthroughPageLoginViewController : VXWalkthroughPageViewController
+@interface VXWalkthroughPageLoginViewController : VXWalkthroughPageViewController<UITextFieldDelegate>
 
 @property (nonatomic,weak) IBOutlet UITextField *loginField;
 @property (nonatomic,weak) IBOutlet UITextField *passwordField;

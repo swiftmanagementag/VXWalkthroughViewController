@@ -41,5 +41,7 @@ enum VXWalkthroughAnimationType{
 
 
 + (NSString *)storyboardID;
+-(BOOL)isValidEmail:(NSString*)pEmail strict:(BOOL)pStrictFilter;
+-(void)pulse:(UIView*)view toSize:(float)value withDuration:(float)duration;
 
 @end

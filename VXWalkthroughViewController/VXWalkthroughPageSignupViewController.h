@@ -10,7 +10,7 @@
 #import "VXWalkthroughPageViewController.h"
 
 
-@interface VXWalkthroughPageSignupViewController : VXWalkthroughPageViewController
+@interface VXWalkthroughPageSignupViewController : VXWalkthroughPageViewController<UITextFieldDelegate>
 
 @property (nonatomic,weak) IBOutlet UITextField *emailField;
 

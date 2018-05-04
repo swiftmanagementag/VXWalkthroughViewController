@@ -96,9 +96,22 @@
 	self.titleView.attributedText = alignedString;
 }
 -(void)setItem:(NSDictionary *)pItem {
-	self.titleText = pItem[VX_TITLE];
+	if(pItem[VX_TITLE] != nil) {
+		self.titleText = pItem[VX_TITLE];
+	}
+	if(pItem[VX_IMAGE] != nil) {
+		self.imageName = pItem[VX_IMAGE];
+	}
 	
-	self.imageName = pItem[VX_IMAGE];
+	if(self.roundImages) {
+		self.imageView.layer.borderWidth = 3.0;
+		self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+		self.imageView.layer.shadowColor = [UIColor grayColor].CGColor;
+		self.imageView.layer.shadowRadius = 6.0;
+		self.imageView.layer.shadowOpacity = 0.5;
+	}
+	
+
 }
 	
 -(void)setImageName:(NSString *)imageName {
@@ -114,12 +127,6 @@
 }
 
 -(void)roundImageView:(UIImageView*)pImageView  {
-	pImageView.layer.borderWidth = 3.0;
-	pImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-	pImageView.layer.shadowColor = [UIColor grayColor].CGColor;
-	pImageView.layer.shadowRadius = 6.0;
-	pImageView.layer.shadowOpacity = 0.5;
-	
 	pImageView.layer.cornerRadius = pImageView.frame.size.width / 2;
 	pImageView.clipsToBounds = true;
 	
@@ -203,5 +210,31 @@
 	UIView *cView = (UIView*)self.view.subviews[index];
 	cView.layer.transform = transform;
 }
+
+-(BOOL)isValidEmail:(NSString*)pEmail strict:(BOOL)pStrictFilter {
+	NSString *stricterFilterString = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+	NSString *laxString = @".+@.+\\.[A-Za-z]{2}[A-Za-z]*";
+	
+	NSString *emailRegex = pStrictFilter ? stricterFilterString : laxString;
+	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+	
+	return [emailTest evaluateWithObject:pEmail];
+}
+
+-(void)pulse:(UIView*)view toSize:(float)value withDuration:(float)duration {
+	[view.layer removeAnimationForKey:@"pulse"];
+
+	if(duration > 0.0f) {
+		CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+		pulseAnimation.duration = duration;
+		pulseAnimation.toValue = [NSNumber numberWithFloat:value];;
+		pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+		pulseAnimation.autoreverses = YES;
+		pulseAnimation.repeatCount = FLT_MAX;
+		[view.layer addAnimation:pulseAnimation forKey:@"pulse"];
+	}
+}
+
+
 
 @end

@@ -82,6 +82,7 @@
 
 	self.pageControl.numberOfPages = self.controllers.count;
 	self.pageControl.currentPage = 0;
+	[self updateUI];
 	
 	NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
 	NSString *startInfoKey = [NSString stringWithFormat:@"vxwalkthroughshown_%@", appVersion];
@@ -121,6 +122,9 @@
 	walkthrough.roundImages = YES;
 	return walkthrough;
 }
+-(VXWalkthroughPageViewController*)createPageViewControllerWithTitle:(NSString*)pTitle  andImageName:(NSString*)pImageName {
+	return [self createPageViewControllerWithItem:@{VX_TITLE: pTitle, VX_IMAGE: pImageName}];
+}
 -(VXWalkthroughPageViewController*)createPageViewControllerWithItem:(NSDictionary*)pItem {
 	NSBundle* bundle = [NSBundle bundleForClass:self.classForCoder];
 	
@@ -142,24 +146,44 @@
 	return vc;
 }
 
+-(NSMutableDictionary*)createItem:(NSString*)pKey withOptions:(NSDictionary*)pDictionary {
+	NSString *text = NSLocalizedString(pKey, nil);
+	NSString *buttonTitle = NSLocalizedString([pKey stringByAppendingString:@"_button"], nil);
 	
+	NSString *imageName = [pKey stringByAppendingString:@".png"];
+	NSNumber *sort = [NSNumber numberWithInteger:1];
+	
+	NSDictionary* item = @{VX_KEY: pKey, VX_TITLE: text, VX_IMAGE: imageName, VX_SORT: sort,VX_BUTTONTITLE: buttonTitle };
+	
+	NSMutableDictionary* itemResult  = [NSMutableDictionary dictionaryWithDictionary:item];
+									
+	[itemResult addEntriesFromDictionary:pDictionary];
+	
+	return itemResult;
+}
 -(void)populate {
+	[self populateWithDefault:true];
+}
+
+-(void)populateWithDefault:(BOOL)pDefault {
 	self.items = [[NSMutableDictionary alloc] init];
-		
-	// setup pages
-	NSInteger step = 0;
-	NSString *stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
+	
+	if(pDefault) {
+		// setup pages
+		NSInteger step = 0;
+		NSString *stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
 
-	NSString* stepText = NSLocalizedString(stepKey, @"");
+		NSString* stepText = NSLocalizedString(stepKey, @"");
 
-	while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
-		NSDictionary* item = @{VX_KEY: stepKey, VX_TITLE: stepText, VX_IMAGE: stepKey, VX_SORT: [NSNumber numberWithInteger:step * 10]};
-		[self.items setObject:item forKey:stepKey];
+		while ([stepText length] != 0 && ![stepText isEqualToString:stepKey]) {
+			NSDictionary* item = @{VX_KEY: stepKey, VX_TITLE: stepText, VX_IMAGE: stepKey, VX_SORT: [NSNumber numberWithInteger:step * 10]};
+			[self.items setObject:item forKey:stepKey];
 		
-		step++;
+			step++;
 		
-		stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
-		stepText = NSLocalizedString(stepKey, @"");
+			stepKey = [NSString stringWithFormat:@"walkthrough_%li", (long)step];
+			stepText = NSLocalizedString(stepKey, @"");
+		}
 	}
 }
 -(void)load {
@@ -301,17 +325,18 @@
 		[self.delegate walkthroughPageDidChange:self.currentPage];
 	}
 	// Hide/Show navigation buttons
-	if(self.currentPage == self.controllers.count - 1){
+	if(self.currentPage == self.controllers.count - 1 || self.controllers.count == 1){
 		self.nextButton.hidden = true;
 	}else{
 		self.nextButton.hidden = false;
 	}
 	
-	if(self.currentPage == 0){
+	if(self.currentPage == 0 || self.controllers.count == 1){
 		self.prevButton.hidden = true;
 	}else{
 		self.prevButton.hidden = false;
 	}
+	self.pageControl.hidden = (self.controllers.count <= 1);
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	for(NSInteger i=0; i < self.controllers.count; i++) {

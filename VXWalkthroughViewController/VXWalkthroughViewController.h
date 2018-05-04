@@ -33,6 +33,7 @@
 #define VX_TITLE @"title"
 #define VX_IMAGE @"image"
 #define VX_STORYBOARDID @"storyboardID"
+#define VX_OPTIONS @"options"
 
 #define VX_PICKERVALUE @"pickerValue"
 #define VX_LOGINVALUE @"loginValue"
@@ -44,11 +45,13 @@
 #define VX_PASSWORDPROMPT @"passwordPrompt"
 #define VX_BUTTONTITLE @"buttonTitle"
 #define VX_PLACEHOLDERVALUE @"placeholderValue"
+
 #define VX_SUCCESS @"success"
 #define VX_ERROR @"error"
 
 #define VX_KEY @"key"
 #define VX_SORT @"sort"
+#define VX_AVAILABLE @"available"
 
 @interface VXWalkthroughViewController : UIViewController <UIScrollViewDelegate>
 
@@ -74,6 +77,9 @@
 
 -(void)addViewController:(UIViewController*)vc;
 -(void)populate;
+-(void)populateWithDefault:(BOOL)pDefault;
+-(NSMutableDictionary*)createItem:(NSString*)pKey withOptions:(NSDictionary*)pDictionary;
+
 +(BOOL)walkthroughShown;
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor;
 +(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles;
