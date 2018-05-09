@@ -60,6 +60,10 @@
 		[self stopAnimating];
 		
 		self.titleText = pItem[VX_ERROR];
+		
+		// Assumber user denied request
+		self.actionButton.hidden = true;
+		
 	} else if (pItem[VX_SUCCESS]) {
 		[self stopAnimating];
 		

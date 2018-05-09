@@ -92,6 +92,9 @@
 		[self stopAnimating];
 		
 		self.titleText = pItem[VX_ERROR];
+		
+		[self enableActionButton:true];
+		
 	} else if (pItem[VX_SUCCESS]) {
 		[self stopAnimating];
 		

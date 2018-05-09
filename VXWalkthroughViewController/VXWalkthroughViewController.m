@@ -103,10 +103,10 @@
 	return [walkthroughShown isEqualToString:@"YES"];
 }
 
-+(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor {
++(instancetype)initWithDelegate:(NSObject<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor {
 	return [VXWalkthroughViewController initWithDelegate:pDelegate withBackgroundColor:pBackgroundColor withStyles:nil];
 }
-+(instancetype)initWithDelegate:(UIViewController<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles{
++(instancetype)initWithDelegate:(NSObject<VXWalkthroughViewControllerDelegate>*)pDelegate withBackgroundColor:(UIColor*)pBackgroundColor withStyles:(NSDictionary*)pStyles{
 	NSBundle* bundle = [NSBundle bundleForClass:self.classForCoder];
 	
 	UIStoryboard *stb = [UIStoryboard storyboardWithName:VXWalkthroughViewController.storyboardName bundle:bundle];
