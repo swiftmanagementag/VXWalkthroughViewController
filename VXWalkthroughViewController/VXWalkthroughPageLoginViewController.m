@@ -9,6 +9,7 @@
 #import "VXWalkthroughPageLoginViewController.h"
 
 @interface VXWalkthroughPageLoginViewController ()
+@property (assign, nonatomic) BOOL keyboardIsVisible;
 @end
 
 @implementation VXWalkthroughPageLoginViewController
@@ -24,9 +25,13 @@
 	
 	return self;
 }
-	
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.keyboardIsVisible = NO;
 	
 	self.loginField.placeholder = @"info@domain.com";
 	self.loginField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -39,9 +44,16 @@
 	self.passwordField.keyboardType = UIKeyboardTypeASCIICapable;
 	self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.passwordField.spellCheckingType = UITextSpellCheckingTypeNo;
-	self.passwordField.returnKeyType = UIReturnKeyNext;
+	self.passwordField.returnKeyType = UIReturnKeyDone;
 	self.passwordField.delegate = self;
+	
+	[self.loginField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
+	[self.passwordField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
+	[self.passwordField addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
 
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+	
 	[self enableActionButton:false];
 }
 -(void)viewDidLayoutSubviews {
@@ -51,6 +63,10 @@
 	self.actionButton.layer.cornerRadius = self.actionButton.frame.size.height * 0.25f;
 	
 }
+- (IBAction)textFieldFinished:(id)sender {
+	[sender resignFirstResponder];
+}
+
 -(void)startAnimating {
 	[self enableActionButton:false];
 	[self pulse:self.imageView toSize:0.8f withDuration:2.0f];
@@ -60,16 +76,42 @@
 	[self pulse:self.imageView toSize:0.8f withDuration:0.0f];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-	[self validateInput];
-	return true;
-}
-
 -(void)enableActionButton:(BOOL)pIsEnabled {
 	self.actionButton.enabled = pIsEnabled;
 	self.actionButton.alpha = pIsEnabled ? 1.0f : 0.5f;
 	
 }
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+	if(_keyboardIsVisible) return;
+
+	NSDictionary* info = [notification userInfo];
+	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+	
+	[UIView animateWithDuration:0.2f animations:^{
+		CGRect f = self.view.frame;
+		f.origin.y -= kbSize.height;
+		self.view.frame = f;
+	}];
+	_keyboardIsVisible = YES;
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+	if(!_keyboardIsVisible) return;
+	
+	NSDictionary* info = [notification userInfo];
+	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+	
+	[UIView animateWithDuration:0.2f animations:^{
+		CGRect f = self.view.frame;
+		f.origin.y += kbSize.height;
+		self.view.frame = f;
+	}];
+	_keyboardIsVisible = NO;
+}
+
+
 -(BOOL)validateInput {
 	// enable button if input valid
 	[self enableActionButton:false];
@@ -128,7 +170,9 @@
 }
 - (IBAction)actionClicked:(id)sender {
 	if([self.parent.delegate respondsToSelector:@selector(walkthroughActionButtonPressed:withOptions:)]) {
-		
+		[self.loginField resignFirstResponder];
+		[self.passwordField resignFirstResponder];
+
 		// start process
 		[self startAnimating];
 		
