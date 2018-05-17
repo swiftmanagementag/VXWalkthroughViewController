@@ -196,7 +196,7 @@
 			if ([obj1[VX_SORT] integerValue] > [obj2[VX_SORT] integerValue]) {
 		
 				return (NSComparisonResult)NSOrderedDescending;
-	}
+			}
 			if ([obj1[VX_SORT] integerValue] < [obj2[VX_SORT] integerValue]) {
 				
 				return (NSComparisonResult)NSOrderedAscending;
@@ -230,6 +230,18 @@
 		return self.controllers[self.currentPage];
 	}
 	return nil;
+}
+-(VXWalkthroughPageViewController*)controllerWithKey:(NSString*)pKey {
+	NSInteger controllerIndex = [self.controllers indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+		return ([((VXWalkthroughPageViewController *)obj).key  isEqualToString:pKey]);
+	}];
+
+	if(controllerIndex >= 0 && controllerIndex < self.controllers.count) {
+		return self.controllers[controllerIndex];
+	} else {
+		return nil;
+	}
+	
 }
 -(IBAction)nextPage{
 	if (self.currentPage + 1 < self.controllers.count) {

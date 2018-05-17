@@ -78,6 +78,8 @@
 @property (nonatomic, readonly) NSInteger currentPage;
 
 -(VXWalkthroughPageViewController*)currentController;
+-(VXWalkthroughPageViewController*)controllerWithKey:(NSString*)pKey;
+
 -(void)addViewController:(UIViewController*)vc;
 -(void)populate;
 -(void)populateWithDefault:(BOOL)pDefault;
