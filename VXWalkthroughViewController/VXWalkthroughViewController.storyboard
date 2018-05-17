@@ -165,7 +165,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Things to do" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncU-9J-E7i">
-                                <rect key="frame" x="16" y="402.5" width="343" height="256.5"/>
+                                <rect key="frame" x="16" y="402" width="343" height="257"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ncU-9J-E7i" secondAttribute="height" multiplier="4:3" id="hSS-MH-6Xr"/>
                                 </constraints>
@@ -351,6 +351,12 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.99844154792746109" green="0.99844154792746109" blue="0.99844154792746109" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="previousClicked:" destination="SPK-f7-Ogl" eventType="touchUpInside" id="0le-le-N3j"/>
@@ -394,6 +400,12 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.99844154789999995" green="0.99844154789999995" blue="0.99844154789999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="nextClicked:" destination="SPK-f7-Ogl" eventType="touchUpInside" id="aDY-vC-LEj"/>
@@ -431,10 +443,10 @@
             </objects>
             <point key="canvasLocation" x="705" y="693"/>
         </scene>
-        <!--Walkthrough Page Permission View Controller-->
+        <!--Walkthrough Page Action View Controller-->
         <scene sceneID="8b0-3q-0N6">
             <objects>
-                <viewController storyboardIdentifier="WalkthroughPagePermission" id="hhv-Ye-au1" customClass="VXWalkthroughPagePermissionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkthroughPageAction" id="hhv-Ye-au1" customClass="VXWalkthroughPageActionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ef0-mY-lTq"/>
                         <viewControllerLayoutGuide type="bottom" id="UmB-0n-2pg"/>
@@ -457,7 +469,7 @@
                                     <constraint firstAttribute="height" constant="44" id="BCm-6U-vjN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Give Permission">
+                                <state key="normal" title="Action">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

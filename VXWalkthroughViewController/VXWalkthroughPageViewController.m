@@ -96,6 +96,8 @@
 	self.titleView.attributedText = alignedString;
 }
 -(void)setItem:(NSDictionary *)pItem {
+	_item = pItem;
+	
 	if(pItem[VX_TITLE] != nil) {
 		self.titleText = pItem[VX_TITLE];
 	}

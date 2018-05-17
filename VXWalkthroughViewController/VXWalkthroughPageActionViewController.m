@@ -6,17 +6,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VXWalkthroughPagePermissionViewController.h"
+#import "VXWalkthroughPageActionViewController.h"
 
-@interface VXWalkthroughPagePermissionViewController ()
+@interface VXWalkthroughPageActionViewController ()
 @end
 
-@implementation VXWalkthroughPagePermissionViewController
+@implementation VXWalkthroughPageActionViewController
 
 
 - (instancetype)init {
 	if(self =  [super init]) {
 	}
+
 	return self;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -89,7 +90,7 @@
 }
 
 + (NSString *)storyboardID {
-	return @"WalkthroughPagePermission";
+	return @"WalkthroughPageAction";
 }
 
 @end

@@ -11,8 +11,8 @@
 @interface VXWalkthroughPagePickerViewController ()
 
 @property (nonatomic,weak) NSArray*options;
-@property (nonatomic) int activeOption;
-@property (nonatomic) int selectedOption;
+@property (nonatomic) NSInteger activeOption;
+@property (nonatomic) NSInteger selectedOption;
 
 @end
 
@@ -35,8 +35,16 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	self.nextButton.backgroundColor = self.view.backgroundColor;
-	self.previousButton.backgroundColor = self.view.backgroundColor;
+	//self.nextButton.backgroundColor = self.view.backgroundColor;
+	//self.previousButton.backgroundColor = self.view.backgroundColor;
+	self.nextButton.backgroundColor = self.actionButton.backgroundColor;
+	self.previousButton.backgroundColor = self.actionButton.backgroundColor;
+	
+	self.nextButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+	self.previousButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+	
+	self.nextButton.layer.borderWidth = 2.0f;
+	self.previousButton.layer.borderWidth = 2.0f;
 	
 	self.nextButton.alpha = 1.0;
 	self.previousButton.alpha = 1.0;
@@ -77,18 +85,19 @@
 		
 		self.titleText = pItem[VX_SUCCESS];
 		
+		self.actionButton.hidden = true;
 	} else {
 		[self enableActionButton:true];
 
 		self.options = pItem[VX_OPTIONS];
 		
-		
 		self.selectedOption = 0;
 		
-		[self setOption:0];
-		
-		self.nextButton.hidden = (self.options.count) <= 1;
-		self.previousButton.hidden = true;
+		self.selectedOption = [self.options indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+			return ([((NSDictionary *)obj)[VX_KEY]  isEqualToString:pItem[VX_PICKERVALUE]]);
+		}];
+
+		[self setOption:self.selectedOption];
 		
 		// setup fields
 		[self.actionButton setTitle:pItem[VX_BUTTONTITLE] forState:UIControlStateNormal];
@@ -97,22 +106,27 @@
 }
 -(void)setOption:(int)pIndex {
 	if(pIndex < self.options.count) {
-		NSDictionary* item = self.options[pIndex];
-		
 		self.activeOption = pIndex;
-		self.titleText = item[VX_TITLE];
-		self.imageName = item[VX_IMAGE];
+		
+		NSDictionary* selectedItem = self.options[self.activeOption];
+		
+		self.imageName = selectedItem[VX_IMAGE];
 		
 		self.imageView.layer.borderWidth = (pIndex == self.selectedOption) ? 6 : 3;
 		
 		self.previousButton.hidden = (self.activeOption == 0);
 		self.nextButton.hidden = (self.activeOption >= (self.options.count - 1));
-		
-		NSNumber* isAvailable = item[VX_AVAILABLE];
-		
-		self.actionButton.hidden = (pIndex == self.selectedOption);
-		
-		[self enableActionButton:(isAvailable ? [isAvailable boolValue] : true)];
+	
+		if (pIndex == self.selectedOption) {
+			self.titleText = [NSString stringWithFormat:self.item[VX_TITLE], selectedItem[VX_TITLE]] ;
+			self.actionButton.hidden = true;
+		} else {
+			self.titleText = selectedItem[VX_TITLE];
+			NSNumber* isAvailable = selectedItem[VX_AVAILABLE];
+			
+			self.actionButton.hidden = false;
+			[self enableActionButton:(isAvailable ? [isAvailable boolValue] : true)];
+		}
 	}
 }
 - (IBAction)actionClicked:(id)sender {
@@ -121,11 +135,13 @@
 		// start process
 		[self startAnimating];
 	
-		if(self.selectedOption < self.options.count) {
-			NSDictionary* item = self.options[self.activeOption];
+		if(self.activeOption < self.options.count) {
+			self.selectedOption = self.activeOption;
+			NSDictionary* selectedItem = self.options[self.selectedOption];
 			
-			NSDictionary* options = @{VX_PICKERVALUE: item[VX_KEY]};
-			[self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
+			NSDictionary *itemResult = @{VX_PICKERVALUE: selectedItem[VX_KEY]};
+			
+			[self.parent.delegate walkthroughActionButtonPressed:self withOptions:itemResult];
 		}
 	}
 }

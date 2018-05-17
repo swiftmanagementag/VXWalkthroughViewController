@@ -28,6 +28,7 @@ enum VXWalkthroughAnimationType{
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *imageName;
 
+@property (nonatomic) NSString *key;
 @property (nonatomic) NSDictionary *item;
 
 @property (nonatomic) NSDictionary *styles;

@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "VXWalkthroughPageViewController.h"
 
+@interface VXWalkthroughPageActionViewController : VXWalkthroughPageViewController
 
-@interface VXWalkthroughPagePermissionViewController : VXWalkthroughPageViewController
-
-	@property (nonatomic,weak) IBOutlet UIButton *actionButton;
+@property (nonatomic,weak) IBOutlet UIButton *actionButton;
 
 - (IBAction)actionClicked:(id)sender;
 

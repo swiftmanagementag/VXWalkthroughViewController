@@ -210,7 +210,7 @@
 			
 			VXWalkthroughPageViewController* vc = [self createPageViewControllerWithItem:item];
 			if (vc) {
-				
+				vc.key = key;
 				[self addViewController:vc];
 			}
 			
@@ -225,7 +225,12 @@
 - (NSInteger)currentPage{
 	return (NSInteger)(self.scrollview.contentOffset.x / self.view.bounds.size.width);
 }
-
+-(VXWalkthroughPageViewController*)currentController {
+	if (self.currentPage < self.controllers.count) {
+		return self.controllers[self.currentPage];
+	}
+	return nil;
+}
 -(IBAction)nextPage{
 	if (self.currentPage + 1 < self.controllers.count) {
 		if([self.delegate respondsToSelector:@selector(walkthroughNextButtonPressed)]) {

@@ -53,6 +53,8 @@
 #define VX_SORT @"sort"
 #define VX_AVAILABLE @"available"
 
+@class VXWalkthroughPageViewController;
+
 @interface VXWalkthroughViewController : UIViewController <UIScrollViewDelegate>
 
 // Walkthrough Delegate:
@@ -75,6 +77,7 @@
 
 @property (nonatomic, readonly) NSInteger currentPage;
 
+-(VXWalkthroughPageViewController*)currentController;
 -(void)addViewController:(UIViewController*)vc;
 -(void)populate;
 -(void)populateWithDefault:(BOOL)pDefault;
