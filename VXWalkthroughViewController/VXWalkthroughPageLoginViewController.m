@@ -40,13 +40,18 @@
 	self.loginField.spellCheckingType = UITextSpellCheckingTypeNo;
 	self.loginField.returnKeyType = UIReturnKeyNext;
 	self.loginField.delegate = self;
-	
+	if (@available(iOS 11.0, *)) {
+		self.loginField.textContentType = UITextContentTypeEmailAddress;
+	}
 	self.passwordField.keyboardType = UIKeyboardTypeASCIICapable;
 	self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.passwordField.spellCheckingType = UITextSpellCheckingTypeNo;
 	self.passwordField.returnKeyType = UIReturnKeyDone;
 	self.passwordField.delegate = self;
-	
+	if (@available(iOS 11.0, *)) {
+		self.passwordField.textContentType = UITextContentTypePassword;
+	}
+
 	[self.loginField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
 	[self.passwordField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
 	[self.passwordField addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];

@@ -37,8 +37,11 @@
 	self.emailField.spellCheckingType = UITextSpellCheckingTypeNo;
 	self.emailField.returnKeyType = UIReturnKeyNext;
 	self.emailField.delegate = self;
-	[self.emailField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
+	if (@available(iOS 11.0, *)) {
+		self.emailField.textContentType = UITextContentTypeEmailAddress;
+	}
 
+	[self.emailField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
 	[self.emailField addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
