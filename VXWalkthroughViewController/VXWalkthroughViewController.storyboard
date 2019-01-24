@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -275,42 +273,60 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijP-K2-y54">
+                                <rect key="frame" x="315" y="559" width="44" height="44"/>
+                                <color key="backgroundColor" red="0.18364328150000001" green="0.39222800730000001" blue="0.70776754620000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="RwT-1Y-Via"/>
+                                    <constraint firstAttribute="width" secondItem="ijP-K2-y54" secondAttribute="height" multiplier="1:1" id="hFV-EU-E2L"/>
+                                </constraints>
+                                <state key="normal" image="VXWalkthroughViewControllerScan.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scanClicked:" destination="4oE-2T-CK6" eventType="touchUpInside" id="YHE-yx-ngw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.4673258066" green="0.74463081360000005" blue="0.92062151430000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="w3H-uS-wL6" firstAttribute="centerX" secondItem="Viq-ok-pOC" secondAttribute="centerX" id="0IU-eC-l2A"/>
                             <constraint firstItem="iN6-VD-huN" firstAttribute="top" secondItem="3S5-lx-uDs" secondAttribute="bottom" constant="64" id="0VW-gB-9fU"/>
                             <constraint firstItem="cLc-cq-ZKV" firstAttribute="top" secondItem="PZx-ML-dTw" secondAttribute="bottom" constant="4" id="4UK-5M-Mjx"/>
+                            <constraint firstItem="3S5-lx-uDs" firstAttribute="trailing" secondItem="XiH-Iw-DKi" secondAttribute="trailing" id="6pj-2Q-tvn"/>
                             <constraint firstItem="w3H-uS-wL6" firstAttribute="top" secondItem="koh-RT-9yA" secondAttribute="bottom" id="6zv-iZ-Ji0"/>
+                            <constraint firstItem="ijP-K2-y54" firstAttribute="top" secondItem="3S5-lx-uDs" secondAttribute="top" id="9su-gh-vcO"/>
                             <constraint firstItem="PZx-ML-dTw" firstAttribute="leading" secondItem="Viq-ok-pOC" secondAttribute="leadingMargin" priority="800" constant="80" id="Ag6-ij-gbV"/>
                             <constraint firstItem="PZx-ML-dTw" firstAttribute="top" secondItem="Viq-ok-pOC" secondAttribute="topMargin" constant="40" id="CVO-7X-S4g"/>
                             <constraint firstItem="cLc-cq-ZKV" firstAttribute="trailing" secondItem="Viq-ok-pOC" secondAttribute="trailing" constant="-8" id="FVN-4L-fZY"/>
                             <constraint firstItem="koh-RT-9yA" firstAttribute="top" secondItem="cLc-cq-ZKV" secondAttribute="bottom" constant="4" id="GVV-x8-Pew"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PZx-ML-dTw" secondAttribute="trailing" priority="800" constant="80" id="H3V-VU-1ec"/>
-                            <constraint firstItem="3S5-lx-uDs" firstAttribute="centerX" secondItem="Viq-ok-pOC" secondAttribute="centerX" id="Ipb-Q5-bSg"/>
                             <constraint firstItem="koh-RT-9yA" firstAttribute="centerX" secondItem="Viq-ok-pOC" secondAttribute="centerX" id="L2q-ZR-2Ct"/>
                             <constraint firstItem="vv7-vC-Svg" firstAttribute="top" secondItem="w3H-uS-wL6" secondAttribute="bottom" constant="4" id="LKj-2J-K3U"/>
                             <constraint firstItem="cLc-cq-ZKV" firstAttribute="leading" secondItem="Viq-ok-pOC" secondAttribute="leading" constant="8" id="OTm-fd-WIA"/>
                             <constraint firstItem="vv7-vC-Svg" firstAttribute="centerX" secondItem="Viq-ok-pOC" secondAttribute="centerX" id="PfH-yL-LsD"/>
+                            <constraint firstItem="ijP-K2-y54" firstAttribute="trailing" secondItem="XiH-Iw-DKi" secondAttribute="trailing" id="Ppx-f5-0V9"/>
                             <constraint firstItem="XiH-Iw-DKi" firstAttribute="width" secondItem="w3H-uS-wL6" secondAttribute="width" id="Q4n-Av-6fm"/>
                             <constraint firstItem="w3H-uS-wL6" firstAttribute="trailing" secondItem="Viq-ok-pOC" secondAttribute="trailingMargin" id="erT-xO-9bV"/>
                             <constraint firstItem="koh-RT-9yA" firstAttribute="width" secondItem="cLc-cq-ZKV" secondAttribute="width" id="mU7-sU-cAu"/>
                             <constraint firstItem="3S5-lx-uDs" firstAttribute="top" secondItem="XiH-Iw-DKi" secondAttribute="bottom" constant="16" id="nCV-hA-qbl"/>
                             <constraint firstItem="XiH-Iw-DKi" firstAttribute="centerX" secondItem="Viq-ok-pOC" secondAttribute="centerX" id="okc-ah-hKV"/>
-                            <constraint firstItem="3S5-lx-uDs" firstAttribute="width" secondItem="w3H-uS-wL6" secondAttribute="width" id="px6-jT-NL2"/>
                             <constraint firstItem="PZx-ML-dTw" firstAttribute="centerX" secondItem="Viq-ok-pOC" secondAttribute="centerX" id="ssL-ef-qKj"/>
                             <constraint firstItem="vv7-vC-Svg" firstAttribute="width" secondItem="cLc-cq-ZKV" secondAttribute="width" id="trj-r4-cFc"/>
                             <constraint firstItem="XiH-Iw-DKi" firstAttribute="top" secondItem="vv7-vC-Svg" secondAttribute="bottom" id="wR8-fJ-cdp"/>
+                            <constraint firstItem="3S5-lx-uDs" firstAttribute="leading" secondItem="XiH-Iw-DKi" secondAttribute="leading" id="yKB-yV-Zy9"/>
                             <constraint firstItem="w3H-uS-wL6" firstAttribute="leading" secondItem="Viq-ok-pOC" secondAttribute="leadingMargin" id="ztj-mQ-rW8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="3S5-lx-uDs" id="uaD-ce-2lJ"/>
+                        <outlet property="actionTrailingMargin" destination="6pj-2Q-tvn" id="kIL-Mp-43k"/>
                         <outlet property="imageView" destination="PZx-ML-dTw" id="7M8-gx-f2U"/>
                         <outlet property="loginField" destination="w3H-uS-wL6" id="2ns-Im-1YK"/>
                         <outlet property="loginLabel" destination="koh-RT-9yA" id="X1Y-JH-zcw"/>
                         <outlet property="passwordField" destination="XiH-Iw-DKi" id="7JI-zM-Spq"/>
                         <outlet property="passwordLabel" destination="vv7-vC-Svg" id="B0G-BP-AjZ"/>
+                        <outlet property="scanButton" destination="ijP-K2-y54" id="uAT-nA-1ca"/>
                         <outlet property="titleView" destination="cLc-cq-ZKV" id="2oL-mf-Mv2"/>
                     </connections>
                 </viewController>
@@ -338,7 +354,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3W-Ef-ipz" userLabel="Prev">
-                                <rect key="frame" x="24" y="206" width="50" height="50"/>
+                                <rect key="frame" x="24" y="206.5" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="KBc-WF-ZKe"/>
@@ -387,7 +403,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-nd-SKL" userLabel="Next">
-                                <rect key="frame" x="301" y="206" width="50" height="50"/>
+                                <rect key="frame" x="301" y="206.5" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="iPn-GK-jk5"/>
@@ -605,6 +621,7 @@
     <resources>
         <image name="VXWalkthroughViewControllerLeftArrow.png" width="50" height="50"/>
         <image name="VXWalkthroughViewControllerRightArrow.png" width="50" height="50"/>
+        <image name="VXWalkthroughViewControllerScan.png" width="50" height="50"/>
         <image name="walkthrough_0.png" width="600" height="600"/>
     </resources>
 </document>

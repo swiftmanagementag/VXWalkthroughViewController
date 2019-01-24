@@ -19,7 +19,11 @@
 @property (nonatomic,weak) IBOutlet UILabel *passwordLabel;
 	
 @property (nonatomic,weak) IBOutlet UIButton *actionButton;
+@property (nonatomic,weak) IBOutlet UIButton *scanButton;
+
+@property(nonatomic,strong) IBOutlet NSLayoutConstraint *actionTrailingMargin;
 
 - (IBAction)actionClicked:(id)sender;
-	
+- (IBAction)scanClicked:(id)sender;
+
 @end

@@ -45,6 +45,7 @@
 #define VX_PASSWORDPROMPT @"passwordPrompt"
 #define VX_BUTTONTITLE @"buttonTitle"
 #define VX_PLACEHOLDERVALUE @"placeholderValue"
+#define VX_SCANENABLED @"scanenabled"
 
 #define VX_SUCCESS @"success"
 #define VX_ERROR @"error"

@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "VXWalkthroughPageLoginViewController.h"
+#import "QRCodeReaderViewController.h"
+#import "QRCodeReader.h"
 
 @interface VXWalkthroughPageLoginViewController ()
 @property (assign, nonatomic) BOOL keyboardIsVisible;
@@ -60,12 +62,15 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 	
 	[self enableActionButton:false];
+	[self enableScanButton:false];
 }
 -(void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
 	
 	self.actionButton.layer.masksToBounds = true;
 	self.actionButton.layer.cornerRadius = self.actionButton.frame.size.height * 0.25f;
+	self.scanButton.layer.masksToBounds = true;
+	self.scanButton.layer.cornerRadius = self.actionButton.frame.size.height * 0.25f;
 	
 }
 - (IBAction)textFieldFinished:(id)sender {
@@ -85,6 +90,20 @@
 	self.actionButton.enabled = pIsEnabled;
 	self.actionButton.alpha = pIsEnabled ? 1.0f : 0.5f;
 	
+}
+-(void)enableScanButton:(BOOL)pIsEnabled {
+	BOOL isEnabled = false;
+	if (@available(iOS 11.0, *)) {
+		isEnabled = true;
+		
+	}
+
+	isEnabled = pIsEnabled && isEnabled;
+	
+	self.scanButton.hidden = !isEnabled;
+	self.scanButton.enabled = isEnabled;
+	self.scanButton.alpha = isEnabled ? 1.0f : 0.5f;
+	self.actionTrailingMargin.constant = isEnabled ?  -(12.0f + self.scanButton.frame.size.width) : 0.0f;
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -141,6 +160,9 @@
 		self.titleText = pItem[VX_ERROR];
 		
 		[self enableActionButton:true];
+		if (pItem[VX_SCANENABLED] && [pItem[VX_SCANENABLED] isEqualToString:@"YES"]) {
+			[self enableScanButton:true];
+		}
 		
 	} else if (pItem[VX_SUCCESS]) {
 		[self stopAnimating];
@@ -154,8 +176,10 @@
 		
 		self.loginField.hidden = true;
 		self.passwordField.hidden = true;
+		self.scanButton.hidden = true;
 	} else {
 		[self enableActionButton:false];
+		[self enableScanButton:false];
 		
 		// setup fields
 		[self.actionButton setTitle:pItem[VX_BUTTONTITLE] forState:UIControlStateNormal];
@@ -170,7 +194,10 @@
 			self.passwordField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
 			self.passwordField.placeholder = pItem[VX_PLACEHOLDERVALUE];
 		}
-
+		
+		if (pItem[VX_SCANENABLED] && [pItem[VX_SCANENABLED] isEqualToString:@"YES"]) {
+			[self enableScanButton:true];
+		}
 	}
 }
 - (IBAction)actionClicked:(id)sender {
@@ -186,6 +213,54 @@
 	}
 }
 
+- (IBAction)scanClicked:(id)sender {
+	
+	if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
+		QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+		// Instantiate the view controller
+		QRCodeReaderViewController *vc = [QRCodeReaderViewController readerWithCancelButtonTitle:NSLocalizedString(@"cancel", @"cancel") codeReader:reader startScanningAtLoad:YES showSwitchCameraButton:NO showTorchButton:YES];
+
+		// Set the presentation style
+		vc.delegate = self;
+		vc.modalPresentationStyle = UIModalPresentationFormSheet;
+
+		// Or use blocks
+		[reader setCompletionWithBlock:^(NSString *qrCodeString) {
+			NSLog(@"%@", qrCodeString);
+			//https://truck.app.link/truck?voucher=JOPJ-OI6I-VWKO&teacher=L025&flavor=ch_truck_premium
+
+			if([qrCodeString hasPrefix:@"http"]) {
+				NSURLComponents *urlComponents = [NSURLComponents componentsWithString:qrCodeString];
+				NSArray *queryItems = urlComponents.queryItems;
+				NSMutableArray *someIDs = [NSMutableArray new];
+				for (NSURLQueryItem *item in queryItems) {
+					NSLog(@"%@", item);
+					
+					if ([item.name isEqualToString:@"voucher"]) {
+						self.passwordField.text = item.value;
+					} else if ([item.name isEqualToString:@"teacher"]) {
+						[[NSUserDefaults standardUserDefaults] setObject:item.value forKey:@"teacher_preference"];
+						[[NSUserDefaults standardUserDefaults] synchronize];
+					}
+				}
+			} else {
+				self.passwordField.text = qrCodeString;
+			}
+			[vc dismissViewControllerAnimated:true completion:^{
+				[self validateInput];
+			}];
+		}];
+	
+		[self.parent presentViewController:vc animated:YES completion:NULL];
+
+	}
+}
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader{
+	[reader dismissViewControllerAnimated:true completion:^{
+		NSLog(@"cancelled");
+	}];
+	
+}
 + (NSString *)storyboardID {
 	return @"WalkthroughPageLogin";
 }
