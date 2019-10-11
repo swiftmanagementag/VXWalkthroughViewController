@@ -250,7 +250,8 @@
 				[self validateInput];
 			}];
 		}];
-	
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+                    
 		[self.parent presentViewController:vc animated:YES completion:NULL];
 
 	}
