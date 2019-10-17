@@ -72,6 +72,9 @@ This is the simplest way using the convenience method `VXWalkthroughModalViewCon
 
 ## Release notes
 
+### 1.0.17
+Minor fixes for iOS 13
+
 ### 1.0.16
 Added task specific pageview controllers (e.g. login, signup, action, etc)
 Added option to scan QR Code on login page view

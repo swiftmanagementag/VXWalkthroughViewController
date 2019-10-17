@@ -1,4 +1,4 @@
-@version = "1.0.16"
+@version = "1.0.17"
 
 Pod::Spec.new do |s|
   s.name         	= 'VXWalkthroughViewController'
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.license			= { :type => 'MIT', :file => 'LICENSE' }
   s.author       	= { 'Graham Lancashire' => 'lancashire@swift.ch' }
   s.source       	= { :git => 'https://github.com/swiftmanagementag/VXWalkthroughViewController.git', :tag => s.version.to_s }
-  s.platform     	= :ios, '7.0'
+  s.platform     	= :ios, '10.0'
   s.source_files 	= 'VXWalkthroughViewController/**/*.{h,m}'
   s.resources 		= 'VXWalkthroughViewController/**/*.{bundle,xib,png,lproj,storyboard}'
   s.resource_bundles = {
