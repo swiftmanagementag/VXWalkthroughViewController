@@ -131,18 +131,22 @@
 }
 - (IBAction)actionClicked:(id)sender {
 	if([self.parent.delegate respondsToSelector:@selector(walkthroughActionButtonPressed:withOptions:)]) {
+		[UIView animateWithDuration:0.1 animations:^{
+            [self startAnimating];
+        } completion:^(BOOL finished) {
+            // start process
+            if(self.activeOption < self.options.count) {
+                self.selectedOption = self.activeOption;
+                NSDictionary* selectedItem = self.options[self.selectedOption];
+                
+                NSDictionary *itemResult = @{VX_PICKERVALUE: selectedItem[VX_KEY]};
+                
+                [self.parent.delegate walkthroughActionButtonPressed:self withOptions:itemResult];
+            }
+            
+        }];
+        
 		
-		// start process
-		[self startAnimating];
-	
-		if(self.activeOption < self.options.count) {
-			self.selectedOption = self.activeOption;
-			NSDictionary* selectedItem = self.options[self.selectedOption];
-			
-			NSDictionary *itemResult = @{VX_PICKERVALUE: selectedItem[VX_KEY]};
-			
-			[self.parent.delegate walkthroughActionButtonPressed:self withOptions:itemResult];
-		}
 	}
 }
 

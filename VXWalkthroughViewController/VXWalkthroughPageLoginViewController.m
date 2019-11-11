@@ -89,7 +89,6 @@
 -(void)enableActionButton:(BOOL)pIsEnabled {
 	self.actionButton.enabled = pIsEnabled;
 	self.actionButton.alpha = pIsEnabled ? 1.0f : 0.5f;
-	
 }
 -(void)enableScanButton:(BOOL)pIsEnabled {
 	BOOL isEnabled = false;
@@ -204,13 +203,15 @@
 	if([self.parent.delegate respondsToSelector:@selector(walkthroughActionButtonPressed:withOptions:)]) {
 		[self.loginField resignFirstResponder];
 		[self.passwordField resignFirstResponder];
-
-		// start process
-		[self startAnimating];
-		
-		NSDictionary* options = @{VX_LOGINVALUE: self.loginField.text, VX_PASSWORDVALUE: self.passwordField.text };
-		[self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
-	}
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            [self startAnimating];
+        } completion:^(BOOL finished) {
+            // start process
+            NSDictionary* options = @{VX_LOGINVALUE: self.loginField.text, VX_PASSWORDVALUE: self.passwordField.text };
+            [self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
+        }];
+    }
 }
 
 - (IBAction)scanClicked:(id)sender {

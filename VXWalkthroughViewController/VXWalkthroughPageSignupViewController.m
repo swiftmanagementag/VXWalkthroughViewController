@@ -154,11 +154,15 @@
 	if([self.parent.delegate respondsToSelector:@selector(walkthroughActionButtonPressed:withOptions:)]) {
 		[self.emailField resignFirstResponder];
 		
-		// start process
-		[self startAnimating];
+        [UIView animateWithDuration:0.1 animations:^{
+            [self startAnimating];
+            self.actionButton.backgroundColor = UIColor.orangeColor;
+        } completion:^(BOOL finished) {
+            // start process
+            NSDictionary* options = @{VX_EMAILVALUE: self.emailField.text};
+            [self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
+        }];
 		
-		NSDictionary* options = @{VX_EMAILVALUE: self.emailField.text};
-		[self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
 	}
 }
 

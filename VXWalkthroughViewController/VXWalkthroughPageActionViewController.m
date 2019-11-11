@@ -81,11 +81,15 @@
 }
 - (IBAction)actionClicked:(id)sender {
 	if([self.parent.delegate respondsToSelector:@selector(walkthroughActionButtonPressed:withOptions:)]) {
-		// start process
-		[self startAnimating];
+        [UIView animateWithDuration:0.1 animations:^{
+            [self startAnimating];
+        } completion:^(BOOL finished) {
+            // start process
+            NSDictionary* options = @{};
+            [self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
+        }];
+        
 		
-		NSDictionary* options = @{};
-		[self.parent.delegate walkthroughActionButtonPressed:self withOptions:options];
 	}
 }
 
