@@ -87,8 +87,6 @@
 	NSString *appVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
 	NSString *startInfoKey = [NSString stringWithFormat:@"vxwalkthroughshown_%@", appVersion];
 	
-	NSString *walkthroughShown = [[NSUserDefaults standardUserDefaults] stringForKey:startInfoKey];
-
 	[[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:startInfoKey];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -342,13 +340,13 @@
 		[self.delegate walkthroughPageDidChange:self.currentPage];
 	}
 	// Hide/Show navigation buttons
-	if(self.currentPage == self.controllers.count - 1 || self.controllers.count == 1){
+	if(self.currentPage == self.controllers.count - 1 || self.controllers.count == 1){
 		self.nextButton.hidden = true;
 	}else{
 		self.nextButton.hidden = false;
 	}
 	
-	if(self.currentPage == 0 || self.controllers.count == 1){
+	if(self.currentPage == 0 || self.controllers.count == 1){
 		self.prevButton.hidden = true;
 	}else{
 		self.prevButton.hidden = false;
